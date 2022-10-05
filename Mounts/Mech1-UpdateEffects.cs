@@ -54,7 +54,7 @@ namespace MountClass.Mounts
 				}
 			}
 			//Jumping
-			if (player.velocity.Y < 0)
+			if (player.velocity.Y < 0 && player.controlJump)
 			{
 				if (!jumping)
 				{

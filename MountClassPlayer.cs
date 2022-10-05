@@ -1,3 +1,4 @@
+using System; //For Math functions to work.
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
@@ -99,23 +100,23 @@ namespace MountClass
         {
             if (screenShakeTimerVeryWeak > 0)
             {
-				Main.screenPosition.X += (float)Main.rand.Next((int)(0f - 1), (int)1) * 0.5f;
-				Main.screenPosition.Y += (float)Main.rand.Next((int)(0f - 1), (int)1) * 0.5f;
+				Main.screenPosition.X += (float)Math.Round(Main.rand.Next((int)(0f - 1), (int)1) * 1.10f);
+				Main.screenPosition.Y += (float)Math.Round(Main.rand.Next((int)(0f - 1), (int)1) * 1.10f);
             }
             if (screenShakeTimerWeak > 0)
             {
-				Main.screenPosition.X += (float)Main.rand.Next((int)(0f - 1), (int)1) * 1f;
-				Main.screenPosition.Y += (float)Main.rand.Next((int)(0f - 1), (int)1) * 1f;
+				Main.screenPosition.X += (float)Math.Round(Main.rand.Next((int)(0f - 1), (int)1) * 1.50f);
+				Main.screenPosition.Y += (float)Math.Round(Main.rand.Next((int)(0f - 1), (int)1) * 1.50f);
             }
             if (screenShakeTimerModerate > 0)
             {
-				Main.screenPosition.X += (float)Main.rand.Next((int)(0f - 1), (int)1) * 2f;
-				Main.screenPosition.Y += (float)Main.rand.Next((int)(0f - 1), (int)1) * 2f;
+				Main.screenPosition.X += (float)Math.Round(Main.rand.Next((int)(0f - 1), (int)1) * 2.00f);
+				Main.screenPosition.Y += (float)Math.Round(Main.rand.Next((int)(0f - 1), (int)1) * 2.00f);
             }
             if (screenShakeTimerStrong > 0)
             {
-				Main.screenPosition.X += (float)Main.rand.Next((int)(0f - 1), (int)1) * 4f;
-				Main.screenPosition.Y += (float)Main.rand.Next((int)(0f - 1), (int)1) * 4f;
+				Main.screenPosition.X += (float)Math.Round(Main.rand.Next((int)(0f - 1), (int)1) * 4.00f);
+				Main.screenPosition.Y += (float)Math.Round(Main.rand.Next((int)(0f - 1), (int)1) * 4.00f);
             }
         }
 		
