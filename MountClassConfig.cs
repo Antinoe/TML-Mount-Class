@@ -15,17 +15,17 @@ namespace MountClass
 	[Header("Mech Defense")]
 		
         [Label("[i:ObsidianShield] Armor")]
-        [Tooltip("The percentage of damage the Mech will reduce.\n[Default: 0.75]")]
+        [Tooltip("The percentage of damage the Mech will reduce.\n[Default: 0.85]")]
         [Slider]
-        [DefaultValue(0.75f)]
+        [DefaultValue(0.85f)]
         [Range(0f, 1f)]
         [Increment(.05f)]
         public float mechArmor {get; set;}
 		
         [Label("[i:ObsidianShield] Armor Upgrade")]
-        [Tooltip("Additional percentage of damage the Upgrade Module will reduce.\n[Default: 0.15]")]
+        [Tooltip("Additional percentage of damage the Upgrade Module will reduce.\n[Default: 0.10]")]
         [Slider]
-        [DefaultValue(0.15f)]
+        [DefaultValue(0.10f)]
         [Range(0f, 1f)]
         [Increment(.05f)]
         public float mechUpgradedArmor {get; set;}
