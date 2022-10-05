@@ -112,9 +112,14 @@ namespace MountClass.Mounts
 			else
 			{
 			}
-			NPC.NewNPC(NPC.GetSource_None(), (int)player.position.X, (int)player.position.Y, ModContent.NPCType<Mech1NPC>());
-			//Below is a test.
-			//NPC.NewNPC(NPC.GetSource_None(), (int)player.position.X, (int)player.position.Y, NPCID.BlueSlime);
+			if (ModPlayer.mechDestroyed)
+			{
+				ModPlayer.mechDestroyed = false;
+			}
+			else
+			{
+				NPC.NewNPC(NPC.GetSource_None(), (int)player.position.X, (int)player.position.Y, ModContent.NPCType<Mech1NPC>());
+			}
 		}
     }
 }

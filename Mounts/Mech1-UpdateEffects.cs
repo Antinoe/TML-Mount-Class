@@ -14,10 +14,10 @@ namespace MountClass.Mounts
 		{
 			MountClassPlayer mcp = player.GetModPlayer<MountClassPlayer>();
 			//player.delayUseItem = true;
-			player.endurance += MountClassConfig.Instance.mechEndurance;
+			mcp.mechArmor += MountClassConfig.Instance.mechArmor;
 			if (mcp.upgradeArmor)
 			{
-				player.endurance += MountClassConfig.Instance.mechUpgradedEndurance;
+				mcp.mechArmor += MountClassConfig.Instance.mechUpgradedArmor;
 			}
 			player.thorns += MountClassConfig.Instance.mechThorns;
 			if (mcp.upgradeThorns)

@@ -35,7 +35,7 @@ namespace MountClass
 		public override void UpdateAccessory(Item item, Player player, bool hideVisual)
 		{
 			MountClassPlayer mcp = player.GetModPlayer<MountClassPlayer>();
-			if (MountClassConfig.Instance.mechUpgradedEnduranceWhitelist.Contains(new ItemDefinition(item.type)))
+			if (MountClassConfig.Instance.mechUpgradedArmorWhitelist.Contains(new ItemDefinition(item.type)))
 			{
 				mcp.upgradeArmor = true;
 			}
@@ -55,7 +55,7 @@ namespace MountClass
 			{
 				mcp.upgradeHeavyCannon = true;
 			}
-			if (MountClassConfig.Instance.mechUpgradedEnduranceWhitelist.Contains(new ItemDefinition(item.type)))
+			if (MountClassConfig.Instance.mechUpgradedMachineGunWhitelist.Contains(new ItemDefinition(item.type)))
 			{
 				mcp.upgradeGun = true;
 			}
@@ -63,7 +63,7 @@ namespace MountClass
 
 		public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
 		{
-			if (MountClassConfig.Instance.mechUpgradedEnduranceWhitelist.Contains(new ItemDefinition(item.type)))
+			if (MountClassConfig.Instance.mechUpgradedArmorWhitelist.Contains(new ItemDefinition(item.type)))
 			{
 				var line = new TooltipLine(Mod, "MountClass:Armor", "Upgrades the Mech's Armor.");
 				tooltips.Add(line);
@@ -88,7 +88,7 @@ namespace MountClass
 				var line = new TooltipLine(Mod, "MountClass:HeavyCannon", "Upgrades the Mech's Heavy Cannon.");
 				tooltips.Add(line);
 			}
-			if (MountClassConfig.Instance.mechUpgradedEnduranceWhitelist.Contains(new ItemDefinition(item.type)))
+			if (MountClassConfig.Instance.mechUpgradedMachineGunWhitelist.Contains(new ItemDefinition(item.type)))
 			{
 				var line = new TooltipLine(Mod, "MountClass:MachineGun", "Upgrades the Mech's Machine Gun.");
 				tooltips.Add(line);

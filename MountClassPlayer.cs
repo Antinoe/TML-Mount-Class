@@ -1,6 +1,7 @@
 using System; //For Math functions to work.
 using Microsoft.Xna.Framework;
 using Terraria;
+using static Terraria.Mount;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -20,6 +21,7 @@ namespace MountClass
 		public bool upgradeGrenade;
 		public bool upgradeRocket;
 		public bool upgradeHeavyCannon;
+		public float mechArmor;
 		public bool upgradeArmor;
 		public bool upgradeThorns;
 		public bool mechDestroyed;
@@ -35,6 +37,7 @@ namespace MountClass
             upgradeGrenade = false;
             upgradeRocket = false;
             upgradeHeavyCannon = false;
+			mechArmor = 0f;
             upgradeArmor = false;
             upgradeThorns = false;
         }
@@ -151,7 +154,8 @@ namespace MountClass
             Player player = Main.LocalPlayer;
             if (player.mount.Type == ModContent.MountType<Mech1>())
 			{
-				damage = (int)((damage - player.statDefense) * (1f - player.endurance));
+				//damage = (int)((damage - player.statDefense) * (1f - player.endurance));
+				damage = (int)((damage) * (1f - mechArmor));
 				//^ This calculates the received damage for us. We can then use the variable of ``damage`` later on to refer to the output damage after Defense and Endurance apply.
 				player.immune = true;
 				player.immuneTime = 20;
@@ -173,9 +177,10 @@ namespace MountClass
 				{
 					if (damage >= player.statLife)
 					{
-						//player.statLife = player.statLifeMax;
-						player.dead = true;
-						//mechDestroyed = true;
+						player.statLife = player.statLifeMax;
+						//player.dead = true;
+						mechDestroyed = true;
+						player.mount.Dismount(player);
 					}
 					else
 					{

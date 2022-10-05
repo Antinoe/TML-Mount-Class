@@ -14,25 +14,25 @@ namespace MountClass
 		
 	[Header("Mech Defense")]
 		
-        [Label("[i:ObsidianShield] Endurance")]
+        [Label("[i:ObsidianShield] Armor")]
         [Tooltip("The percentage of damage the Mech will reduce.\n[Default: 0.75]")]
         [Slider]
         [DefaultValue(0.75f)]
         [Range(0f, 1f)]
         [Increment(.05f)]
-        public float mechEndurance {get; set;}
+        public float mechArmor {get; set;}
 		
-        [Label("[i:ObsidianShield] Endurance Upgrade")]
+        [Label("[i:ObsidianShield] Armor Upgrade")]
         [Tooltip("Additional percentage of damage the Upgrade Module will reduce.\n[Default: 0.15]")]
         [Slider]
         [DefaultValue(0.15f)]
         [Range(0f, 1f)]
         [Increment(.05f)]
-        public float mechUpgradedEndurance {get; set;}
+        public float mechUpgradedArmor {get; set;}
 		
-		[Label("[i:ObsidianShield] Endurance Whitelist")]
-		[Tooltip("Accessories in this list will grant Upgraded Endurance for the Mech when equipped.\n(WORK IN PROGRESS)")]
-		public List<ItemDefinition> mechUpgradedEnduranceWhitelist = new List<ItemDefinition>();
+		[Label("[i:ObsidianShield] Armor Whitelist")]
+		[Tooltip("Accessories in this list will grant Upgraded Armor for the Mech when equipped.\n(WORK IN PROGRESS)")]
+		public List<ItemDefinition> mechUpgradedArmorWhitelist = new List<ItemDefinition>();
 		
         [Label("[i:Stinger] Thorns")]
         [Tooltip("The percentage of damage the Mech will reflect.\n[Default: 0.25]")]
