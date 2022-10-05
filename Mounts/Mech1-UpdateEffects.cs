@@ -93,48 +93,6 @@ namespace MountClass.Mounts
 			{
 				landing = false;
 			}
-			//The Step code below is a lackluster, poor workaround. The proper implementation is above.
-			/*if (stepTimer < 86)
-            {
-				stepTimer++;
-			}
-			else
-			{
-				stepTimer = 0;
-			}
-			if (player.velocity.Y == 0 && stepTimer == 45)
-			{
-				if (player.velocity.X > 0 || player.velocity.X < 0)
-				{
-					if (MountClassConfigClient.Instance.enableVanillaSounds)
-					{
-						SoundEngine.PlaySound(SoundID.Item53, player.position);
-					}
-					else
-					{
-						SoundEngine.PlaySound(Sounds.Mech.Mechstep, player.position);
-					}
-				}
-			}
-			if (player.velocity.Y == 0 && stepTimer == 85)
-			{
-				if (player.velocity.X > 0 || player.velocity.X < 0)
-				{
-					if (MountClassConfigClient.Instance.enableVanillaSounds)
-					{
-						SoundEngine.PlaySound(SoundID.Item53, player.position);
-					}
-					else
-					{
-						SoundEngine.PlaySound(Sounds.Mech.MechStep2, player.position);
-					}
-				}
-			}*/
-			//This Jump code isn't working correctly, so I'm commenting it out for now.
-			/*if (player.controlJump && player.velocity.Y > 0)
-			{
-				SoundEngine.PlaySound(Sounds.Mech.MechJump, player.position);
-			}*/
 		}
     }
 }
