@@ -1,0 +1,1 @@
+A class-based mod focused around the concept of Mounts and Mechs. For now, it only has 1 Mech with a few upgrades.
