@@ -24,6 +24,12 @@ namespace MountClass
 				PitchVariance = 0.5f,
 				MaxInstances = 12
 			};
+			public static readonly SoundStyle MechWelcome = new($"{nameof(MountClass)}/Assets/Sounds/MechWelcome")
+			{
+				Volume = 0.5f,
+				//PitchVariance = 0.5f,
+				MaxInstances = 12
+			};
 			public static readonly SoundStyle GunFire = new($"{nameof(MountClass)}/Assets/Sounds/GunFire", 9)
 			{
 				Volume = 0.50f,

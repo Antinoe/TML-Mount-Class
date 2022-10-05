@@ -26,6 +26,7 @@ namespace MountClass
 		public bool mechEnergyShield = false;
 		public int mechEnergyShieldTimer;
 		public int mechEnergyShieldLoopTimer;
+		public int mechWelcomeCooldown = MountClassConfigClient.Instance.mechWelcomeCooldown;
 
         public override void ResetEffects()
         {
@@ -62,6 +63,11 @@ namespace MountClass
 			{
 				mechEnergyShieldLoopTimer--;
 			}
+			if (mechWelcomeCooldown > 0)
+			{
+				mechWelcomeCooldown--;
+			}
+			
 			//Energy Shield
 			if (player.mount.Type == ModContent.MountType<Mech1>())
 			{

@@ -79,8 +79,17 @@ namespace MountClass.Mounts
 
 		public override void SetMount(Player player, ref bool skipDust)
 		{
+			var ModPlayer = player.GetModPlayer<MountClassPlayer>();
 			skipDust = true;
 			mechUsageDelay = 20;
+			if (ModPlayer.mechWelcomeCooldown <= 0)
+			{
+				if (MountClassConfigClient.Instance.enableMechWelcome)
+				{
+					SoundEngine.PlaySound(Sounds.Mech.MechWelcome, player.position);
+				}
+				ModPlayer.mechWelcomeCooldown = MountClassConfigClient.Instance.mechWelcomeCooldown;
+			}
 			if (MountClassConfigClient.Instance.enableVanillaSounds)
 			{
 				SoundEngine.PlaySound(SoundID.Dig, player.position);
@@ -93,6 +102,8 @@ namespace MountClass.Mounts
 
 		public override void Dismount(Player player, ref bool skipDust)
 		{
+			var ModPlayer = player.GetModPlayer<MountClassPlayer>();
+			ModPlayer.mechWelcomeCooldown = MountClassConfigClient.Instance.mechWelcomeCooldown;
 			skipDust = true;
 			if (MountClassConfigClient.Instance.enableVanillaSounds)
 			{
