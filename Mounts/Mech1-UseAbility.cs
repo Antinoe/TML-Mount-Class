@@ -122,7 +122,10 @@ namespace MountClass.Mounts
             }
 			if (!player.mouseInterface && mechUsageDelay <= 0)
 			{
-				if (Main.mouseLeft && rocketTimer <= 0 && weaponSelect <= 1)
+				if (Main.mouseLeft && weaponSelect <= 0)
+				{
+				}
+				if (Main.mouseLeft && rocketTimer <= 0 && weaponSelect == 1)
 				{
 					Vector2 direction = (target - player.Center).SafeNormalize(Vector2.UnitX);
 					if (mcp.upgradeRocket)
@@ -241,6 +244,11 @@ namespace MountClass.Mounts
 				if (Main.netMode != NetmodeID.Server)
 				{
 					//Keybind Weapon Selection
+					if (MountClass.SelectDisarmed.JustPressed)
+					{
+						weaponSelect = 0;
+						//Main.NewText("No Weapon selected");
+					}
 					if (MountClass.SelectGun.JustPressed)
 					{
 						weaponSelect = 4;
