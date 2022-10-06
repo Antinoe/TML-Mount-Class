@@ -86,7 +86,7 @@ namespace MountClass.Mounts
             {
 				heavyCannonTimer--;
 			}
-			if (heavyCannonTimer == 30)
+			if (heavyCannonTimer == 80)
 			{
 				Vector2 direction = (target - player.Center).SafeNormalize(Vector2.UnitX);
 				int casing = Projectile.NewProjectile(Projectile.GetSource_None(), player.Center, direction * -6f, ModContent.ProjectileType<HeavyCannonCasing>(), 0, 0f, player.whoAmI);
@@ -97,11 +97,21 @@ namespace MountClass.Mounts
 				else
 				{
 					SoundEngine.PlaySound(Sounds.Mech.HeavyCannonReload1, player.position);
+				}
+			}
+			if (heavyCannonTimer == 60)
+			{
+				if (MountClassConfigClient.Instance.enableVanillaSounds)
+				{
+					SoundEngine.PlaySound(SoundID.Item108, player.position);
+				}
+				else
+				{
 					SoundEngine.PlaySound(Sounds.Mech.ChainLoopHeavy, player.position);
 					SoundEngine.PlaySound(Sounds.Mech.ChainLoopLight, player.position);
 				}
 			}
-			if (heavyCannonTimer == 1)
+			if (heavyCannonTimer == 50)
 			{
 				if (MountClassConfigClient.Instance.enableVanillaSounds)
 				{
@@ -196,7 +206,7 @@ namespace MountClass.Mounts
 					{
 						Main.projectile[proj].damage = MountClassConfig.Instance.weaponHeavyCannonDamage;
 					}
-					heavyCannonTimer = 50;
+					heavyCannonTimer = 100;
 					if (MountClassConfigClient.Instance.enableVanillaSounds)
 					{
 						SoundEngine.PlaySound(SoundID.Item40, player.position);
