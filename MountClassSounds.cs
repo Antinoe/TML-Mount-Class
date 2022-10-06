@@ -142,6 +142,7 @@ namespace MountClass
 			{
 				Volume = 0.5f,
 				//PitchVariance = 0.5f,
+				IsLooped = true,
 				MaxInstances = 12
 			};
 			public static readonly SoundStyle EnergyShieldOff = new($"{nameof(MountClass)}/Assets/Sounds/EnergyShieldOff")

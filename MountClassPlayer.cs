@@ -1,11 +1,20 @@
 using System; //For Math functions to work.
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Graphics;
 using Terraria;
-using static Terraria.Mount;
-using Terraria.Audio;
 using Terraria.DataStructures;
+using Terraria.GameInput;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
+using Terraria.Audio;
+using Terraria.GameContent;
+using ReLogic.Utilities;
 using MountClass.Mounts;
 using Terraria.GameInput; //This allows the ``ProcessTriggers`` Method to work.
 
@@ -27,12 +36,11 @@ namespace MountClass
 		public bool mechDestroyed;
 		public bool mechEnergyShield = false;
 		public int mechEnergyShieldTimer;
-		public int mechEnergyShieldLoopTimer;
 		public int mechWelcomeCooldown = MountClassConfigClient.Instance.mechWelcomeCooldown;
+		public SlotId? EnergyShieldLoopSound;
 
         public override void ResetEffects()
         {
-            screenShakeTimerWeak = 0;
             upgradeGun = false;
             upgradeGrenade = false;
             upgradeRocket = false;
@@ -62,10 +70,6 @@ namespace MountClass
 			{
 				screenShakeTimerStrong--;
 			}
-			if (mechEnergyShieldLoopTimer > 0)
-			{
-				mechEnergyShieldLoopTimer--;
-			}
 			if (mechWelcomeCooldown > 0)
 			{
 				mechWelcomeCooldown--;
@@ -83,20 +87,10 @@ namespace MountClass
 						{
 							player.statMana--;
 							mechEnergyShieldTimer = MountClassConfig.Instance.mechEnergyShieldTimer;
-							if (mechEnergyShieldLoopTimer == 1)
-							{
-								//SoundEngine.PlaySound(Sounds.Mech.EnergyShieldLoop, player.position);
-								//Disabling Sound Loop for now until I figure out how to manually stop sounds.
-							}
 						}
 						else
 						{
 							mechEnergyShield = false;
-							/*if (SoundEngine.TryGetActiveSound(slot, out var sound));
-							{
-								sound.Stop();
-							}*/
-							//Disabling Sound Loop for now until I figure out how to manually stop sounds.
 							SoundEngine.PlaySound(Sounds.Mech.EnergyShieldOff, player.position);
 							mechEnergyShieldTimer = MountClassConfig.Instance.mechEnergyShieldTimer;
 						}
@@ -136,13 +130,23 @@ namespace MountClass
 			{
 				if (!mechEnergyShield && player.statMana > 1)
 				{
+					if (EnergyShieldLoopSound is null)
+					{
+						EnergyShieldLoopSound = SoundEngine.PlaySound(Sounds.Mech.EnergyShieldLoop, player.position);
+					}
 					mechEnergyShield = true;
 					SoundEngine.PlaySound(Sounds.Mech.EnergyShieldOn, player.position);
-					//SoundEngine.PlaySound(Sounds.Mech.EnergyShieldLoop, player.position);
-					//Disabling Sound Loop for now until I figure out how to manually stop sounds.
 				}
 				else if (mechEnergyShield)
 				{
+					if (EnergyShieldLoopSound is SlotId slot)
+					{
+						if (SoundEngine.TryGetActiveSound(slot, out var sound))
+						{
+							sound.Stop();
+							EnergyShieldLoopSound = null;
+						}
+					}
 					mechEnergyShield = false;
 					SoundEngine.PlaySound(Sounds.Mech.EnergyShieldOff, player.position);
 				}
@@ -161,7 +165,8 @@ namespace MountClass
 				player.immuneTime = 20;
 				playSound = false;
 				SoundEngine.PlaySound(SoundID.NPCHit4, Player.position);
-				if (mechEnergyShield) //Energy Shield
+				//Energy Shield
+				if (mechEnergyShield)
 				{
 					if (damage >= player.statMana)
 					{
@@ -173,12 +178,12 @@ namespace MountClass
 						player.statMana -= damage;
 					}
 				}
-				else //Without Energy Shield
+				//Without Energy Shield
+				else
 				{
 					if (damage >= player.statLife)
 					{
 						player.statLife = player.statLifeMax;
-						//player.dead = true;
 						mechDestroyed = true;
 						player.mount.Dismount(player);
 					}
