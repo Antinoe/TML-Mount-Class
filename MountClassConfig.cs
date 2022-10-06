@@ -51,11 +51,11 @@ namespace MountClass
         public float mechUpgradedThorns {get; set;}
 		
         [Label("[i:CobaltShield] Energy Shield Timer")]
-        [Tooltip("[Default: 5]")]
+        [Tooltip("[Default: 1]")]
         [Slider]
-        [DefaultValue(5)]
-        [Range(5, 600)]
-        [Increment(5)]
+        [DefaultValue(1)]
+        [Range(1, 20)]
+        [Increment(1)]
         public int mechEnergyShieldTimer {get; set;}
 		
 		[Label("[i:ObsidianShield] Thorns Whitelist")]
@@ -65,18 +65,18 @@ namespace MountClass
 	[Header("Mech Arsenal")]
 		
         [Label("[i:RocketIII] Rocket Damage")]
-        [Tooltip("[Default: 40]")]
+        [Tooltip("[Default: 175]")]
         [Slider]
-        [DefaultValue(40)]
-        [Range(0, 200)]
+        [DefaultValue(175)]
+        [Range(0, 300)]
         [Increment(5)]
         public int weaponRocketDamage {get; set;}
 		
         [Label("[i:ClusterRocketI] Upgraded Rocket Damage")]
-        [Tooltip("[Default: 65]")]
+        [Tooltip("[Default: 300]")]
         [Slider]
-        [DefaultValue(65)]
-        [Range(0, 200)]
+        [DefaultValue(300)]
+        [Range(0, 300)]
         [Increment(5)]
         public int weaponUpgradedRocketDamage {get; set;}
 		
@@ -85,10 +85,10 @@ namespace MountClass
 		public List<ItemDefinition> mechUpgradedRocketWhitelist = new List<ItemDefinition>();
 		
         [Label("[i:Grenade] Grenade Damage")]
-        [Tooltip("[Default: 75]")]
+        [Tooltip("[Default: 200]")]
         [Slider]
-        [DefaultValue(75)]
-        [Range(0, 200)]
+        [DefaultValue(200)]
+        [Range(0, 300)]
         [Increment(5)]
         public int weaponGrenadeDamage {get; set;}
 		
@@ -97,18 +97,18 @@ namespace MountClass
 		public List<ItemDefinition> mechUpgradedGrenadeWhitelist = new List<ItemDefinition>();
 		
         [Label("[i:HighVelocityBullet] Heavy Cannon Damage")]
-        [Tooltip("[Default: 20]")]
+        [Tooltip("[Default: 60]")]
         [Slider]
-        [DefaultValue(20)]
-        [Range(0, 200)]
+        [DefaultValue(60)]
+        [Range(0, 300)]
         [Increment(5)]
         public int weaponHeavyCannonDamage {get; set;}
 		
         [Label("[i:HighVelocityBullet] Upgraded Heavy Cannon Damage")]
-        [Tooltip("[Default: 45]")]
+        [Tooltip("[Default: 90]")]
         [Slider]
-        [DefaultValue(45)]
-        [Range(0, 200)]
+        [DefaultValue(90)]
+        [Range(0, 300)]
         [Increment(5)]
         public int weaponUpgradedHeavyCannonDamage {get; set;}
 		
@@ -117,18 +117,18 @@ namespace MountClass
 		public List<ItemDefinition> mechUpgradedHeavyCannonWhitelist = new List<ItemDefinition>();
 		
         [Label("[i:SilverBullet] Machine Gun Damage")]
-        [Tooltip("[Default: 10]")]
+        [Tooltip("[Default: 15]")]
         [Slider]
-        [DefaultValue(10)]
-        [Range(0, 200)]
+        [DefaultValue(15)]
+        [Range(0, 300)]
         [Increment(5)]
         public int weaponMachineGunDamage {get; set;}
 		
         [Label("[i:SilverBullet] Upgraded Machine Gun Damage")]
-        [Tooltip("[Default: 20]")]
+        [Tooltip("[Default: 30]")]
         [Slider]
-        [DefaultValue(20)]
-        [Range(0, 200)]
+        [DefaultValue(30)]
+        [Range(0, 300)]
         [Increment(5)]
         public int weaponUpgradedMachineGunDamage {get; set;}
 		
