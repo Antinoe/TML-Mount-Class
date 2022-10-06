@@ -182,49 +182,63 @@ namespace MountClass
             Player player = Main.LocalPlayer;
             if (player.mount.Type == ModContent.MountType<Mech1>())
 			{
-				//damage = (int)((damage - player.statDefense) * (1f - player.endurance));
-				damage = (int)((damage) * (1f - mechArmor));
-				//^ This calculates the received damage for us. We can then use the variable of ``damage`` later on to refer to the output damage after Defense and Endurance apply.
-				player.immune = true;
-				player.immuneTime = 20;
-				playSound = false;
-				SoundEngine.PlaySound(SoundID.NPCHit4, Player.position);
-				//Energy Shield
-				if (mechEnergyShield)
+				if (player.immuneTime > 0)
 				{
-					if (damage >= player.statMana)
-					{
-						if (EnergyShieldLoopSound is SlotId slot)
-						{
-							if (SoundEngine.TryGetActiveSound(slot, out var sound))
-							{
-								sound.Stop();
-								EnergyShieldLoopSound = null;
-							}
-						}
-						mechEnergyShield = false;
-						SoundEngine.PlaySound(Sounds.Mech.EnergyShieldOff, player.position);
-					}
-					else
-					{
-						player.statMana -= damage;
-					}
+					return false;
 				}
-				//Without Energy Shield
 				else
 				{
-					if (damage >= player.statLife)
+					//damage = (int)((damage - player.statDefense) * (1f - player.endurance));
+					damage = (int)((damage) * (1f - mechArmor));
+					//^ This calculates the received damage for us. We can then use the variable of ``damage`` later on to refer to the output damage after Defense and Endurance apply.
+					player.immune = true;
+					if (damage <= 1)
 					{
-						player.statLife = player.statLifeMax;
-						mechDestroyed = true;
-						player.mount.Dismount(player);
+						player.immuneTime = 20;
 					}
 					else
 					{
-						player.statLife -= damage;
+						player.immuneTime = 40;
 					}
+					playSound = false;
+					SoundEngine.PlaySound(SoundID.NPCHit4, Player.position);
+					//Energy Shield
+					if (mechEnergyShield)
+					{
+						if (damage >= player.statMana)
+						{
+							if (EnergyShieldLoopSound is SlotId slot)
+							{
+								if (SoundEngine.TryGetActiveSound(slot, out var sound))
+								{
+									sound.Stop();
+									EnergyShieldLoopSound = null;
+								}
+							}
+							mechEnergyShield = false;
+							SoundEngine.PlaySound(Sounds.Mech.EnergyShieldOff, player.position);
+						}
+						else
+						{
+							player.statMana -= damage;
+						}
+					}
+					//Without Energy Shield
+					else
+					{
+						if (damage >= player.statLife)
+						{
+							player.statLife = player.statLifeMax;
+							mechDestroyed = true;
+							player.mount.Dismount(player);
+						}
+						else
+						{
+							player.statLife -= damage;
+						}
+					}
+					return false;
 				}
-				return false;
 			}
             return true;
         }
