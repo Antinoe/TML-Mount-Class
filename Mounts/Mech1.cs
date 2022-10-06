@@ -11,21 +11,6 @@ namespace MountClass.Mounts
 {
 	public partial class Mech1 : ModMount
 	{
-		protected int rocketTimer;
-		protected int grenadeTimer;
-		protected int grenadeAmmo;
-		protected int weapponDelay;
-		protected int gunTimer;
-		protected int heavyCannonTimer;
-		protected int weaponSelect;
-		protected int selectTimer;
-		protected int mechUsageDelay;
-		protected bool stepping;
-		protected bool jumping;
-		protected bool falling;
-		protected bool landing;
-		protected bool inAir;
-		
 		public override void SetStaticDefaults()
 		{
             //MountData.buff = ModContent.BuffType<Mech1Mount>();
@@ -79,16 +64,16 @@ namespace MountClass.Mounts
 
 		public override void SetMount(Player player, ref bool skipDust)
 		{
-			var ModPlayer = player.GetModPlayer<MountClassPlayer>();
+			var mcp = player.GetModPlayer<MountClassPlayer>();
 			skipDust = true;
-			mechUsageDelay = 20;
-			if (ModPlayer.mechWelcomeCooldown <= 0)
+			mcp.mechUsageDelay = 20;
+			if (mcp.mechWelcomeCooldown <= 0)
 			{
 				if (MountClassConfigClient.Instance.enableMechWelcome)
 				{
 					SoundEngine.PlaySound(Sounds.Mech.MechWelcome, player.position);
 				}
-				ModPlayer.mechWelcomeCooldown = MountClassConfigClient.Instance.mechWelcomeCooldown;
+				mcp.mechWelcomeCooldown = MountClassConfigClient.Instance.mechWelcomeCooldown;
 			}
 			if (MountClassConfigClient.Instance.enableVanillaSounds)
 			{
@@ -102,8 +87,8 @@ namespace MountClass.Mounts
 
 		public override void Dismount(Player player, ref bool skipDust)
 		{
-			var ModPlayer = player.GetModPlayer<MountClassPlayer>();
-			ModPlayer.mechWelcomeCooldown = MountClassConfigClient.Instance.mechWelcomeCooldown;
+			var mcp = player.GetModPlayer<MountClassPlayer>();
+			mcp.mechWelcomeCooldown = MountClassConfigClient.Instance.mechWelcomeCooldown;
 			skipDust = true;
 			if (MountClassConfigClient.Instance.enableVanillaSounds)
 			{
@@ -112,9 +97,9 @@ namespace MountClass.Mounts
 			else
 			{
 			}
-			if (ModPlayer.mechDestroyed)
+			if (mcp.mechDestroyed)
 			{
-				ModPlayer.mechDestroyed = false;
+				mcp.mechDestroyed = false;
 			}
 			else
 			{

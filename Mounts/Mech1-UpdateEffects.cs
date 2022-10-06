@@ -15,16 +15,16 @@ namespace MountClass.Mounts
 			MountClassPlayer mcp = player.GetModPlayer<MountClassPlayer>();
 			//player.delayUseItem = true;
 			mcp.mechArmor += MountClassConfig.Instance.mechArmor;
-			if (mcp.upgradeArmor)
+			if (mcp.mechUpgradeArmor)
 			{
 				mcp.mechArmor += MountClassConfig.Instance.mechUpgradedArmor;
 			}
 			player.thorns += MountClassConfig.Instance.mechThorns;
-			if (mcp.upgradeThorns)
+			if (mcp.mechUpgradeThorns)
 			{
 				player.thorns += MountClassConfig.Instance.mechUpgradedThorns;
 			}
-			//Stepping
+			//mcp.stepping
 			if (player.velocity.Y == 0)
 			{
 				if (player.velocity.X > 0 || player.velocity.X < 0)
@@ -33,9 +33,9 @@ namespace MountClass.Mounts
 					if (player.mount?._frame == 1 || player.mount?._frame == 3)
 					{
 						//I thank you for this, Nakano. This is one of the most important Coding-related things I learned this year. -Antinous
-						if (!stepping)
+						if (!mcp.stepping)
 						{
-							stepping = true;
+							mcp.stepping = true;
 							Projectile.NewProjectile(Projectile.GetSource_None(), player.Center, Vector2.Zero, ModContent.ProjectileType<ScreenshakeProjectileModerate>(), 0, 0, player.whoAmI);
 							if (MountClassConfigClient.Instance.enableVanillaSounds)
 							{
@@ -49,16 +49,16 @@ namespace MountClass.Mounts
 					}
 					else
 					{
-						stepping = false;
+						mcp.stepping = false;
 					}
 				}
 			}
-			//Jumping
+			//mcp.jumping
 			if (player.velocity.Y < 0 && player.controlJump)
 			{
-				if (!jumping)
+				if (!mcp.jumping)
 				{
-					jumping = true;
+					mcp.jumping = true;
 					if (MountClassConfigClient.Instance.enableVanillaSounds)
 					{
 					}
@@ -70,14 +70,14 @@ namespace MountClass.Mounts
 			}
 			else
 			{
-				jumping = false;
+				mcp.jumping = false;
 			}
-			//Landing
+			//mcp.landing
 			if (player.velocity.Y == 0)
 			{
-				if (!landing)
+				if (!mcp.landing)
 				{
-					landing = true;
+					mcp.landing = true;
 					Projectile.NewProjectile(Projectile.GetSource_None(), player.Center, Vector2.Zero, ModContent.ProjectileType<ScreenshakeProjectileModerate>(), 0, 0, player.whoAmI);
 					if (MountClassConfigClient.Instance.enableVanillaSounds)
 					{
@@ -91,7 +91,7 @@ namespace MountClass.Mounts
 			}
 			else
 			{
-				landing = false;
+				mcp.landing = false;
 			}
 		}
     }

@@ -37,27 +37,27 @@ namespace MountClass
 			MountClassPlayer mcp = player.GetModPlayer<MountClassPlayer>();
 			if (MountClassConfig.Instance.mechUpgradedArmorWhitelist.Contains(new ItemDefinition(item.type)))
 			{
-				mcp.upgradeArmor = true;
+				mcp.mechUpgradeArmor = true;
 			}
 			if (MountClassConfig.Instance.mechUpgradedThornsWhitelist.Contains(new ItemDefinition(item.type)))
 			{
-				mcp.upgradeThorns = true;
+				mcp.mechUpgradeThorns = true;
 			}
 			if (MountClassConfig.Instance.mechUpgradedRocketWhitelist.Contains(new ItemDefinition(item.type)))
 			{
-				mcp.upgradeRocket = true;
+				mcp.mechUpgradeRocket = true;
 			}
 			if (MountClassConfig.Instance.mechUpgradedGrenadeWhitelist.Contains(new ItemDefinition(item.type)))
 			{
-				mcp.upgradeGrenade = true;
+				mcp.mechUpgradeGrenade = true;
 			}
 			if (MountClassConfig.Instance.mechUpgradedHeavyCannonWhitelist.Contains(new ItemDefinition(item.type)))
 			{
-				mcp.upgradeHeavyCannon = true;
+				mcp.mechUpgradeHeavyCannon = true;
 			}
 			if (MountClassConfig.Instance.mechUpgradedMachineGunWhitelist.Contains(new ItemDefinition(item.type)))
 			{
-				mcp.upgradeGun = true;
+				mcp.mechUpgradeGun = true;
 			}
 		}
 

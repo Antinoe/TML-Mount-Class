@@ -26,28 +26,44 @@ namespace MountClass
         public int screenShakeTimerWeak;
         public int screenShakeTimerModerate;
         public int screenShakeTimerStrong;
-		public bool upgradeGun;
-		public bool upgradeGrenade;
-		public bool upgradeRocket;
-		public bool upgradeHeavyCannon;
+		public bool mechUpgradeGun;
+		public bool mechUpgradeGrenade;
+		public bool mechUpgradeRocket;
+		public bool mechUpgradeHeavyCannon;
 		public float mechArmor;
-		public bool upgradeArmor;
-		public bool upgradeThorns;
+		public bool mechUpgradeArmor;
+		public bool mechUpgradeThorns;
 		public bool mechDestroyed;
 		public bool mechEnergyShield = false;
 		public int mechEnergyShieldTimer;
 		public int mechWelcomeCooldown = MountClassConfigClient.Instance.mechWelcomeCooldown;
 		public SlotId? EnergyShieldLoopSound;
+		
+		//Mount-specific fields.
+		public int rocketTimer;
+		public int grenadeTimer;
+		public int grenadeAmmo;
+		public int weapponDelay;
+		public int machineGunTimer;
+		public int heavyCannonTimer;
+		public int weaponSelect;
+		public int selectTimer;
+		public int mechUsageDelay;
+		public bool stepping;
+		public bool jumping;
+		public bool falling;
+		public bool landing;
+		public bool inAir;
 
         public override void ResetEffects()
         {
-            upgradeGun = false;
-            upgradeGrenade = false;
-            upgradeRocket = false;
-            upgradeHeavyCannon = false;
+            mechUpgradeGun = false;
+            mechUpgradeGrenade = false;
+            mechUpgradeRocket = false;
+            mechUpgradeHeavyCannon = false;
 			mechArmor = 0f;
-            upgradeArmor = false;
-            upgradeThorns = false;
+            mechUpgradeArmor = false;
+            mechUpgradeThorns = false;
         }
 		
 		public override void PostUpdateMiscEffects()
@@ -90,6 +106,14 @@ namespace MountClass
 						}
 						else
 						{
+							if (EnergyShieldLoopSound is SlotId slot)
+							{
+								if (SoundEngine.TryGetActiveSound(slot, out var sound))
+								{
+									sound.Stop();
+									EnergyShieldLoopSound = null;
+								}
+							}
 							mechEnergyShield = false;
 							SoundEngine.PlaySound(Sounds.Mech.EnergyShieldOff, player.position);
 							mechEnergyShieldTimer = MountClassConfig.Instance.mechEnergyShieldTimer;
@@ -170,6 +194,14 @@ namespace MountClass
 				{
 					if (damage >= player.statMana)
 					{
+						if (EnergyShieldLoopSound is SlotId slot)
+						{
+							if (SoundEngine.TryGetActiveSound(slot, out var sound))
+							{
+								sound.Stop();
+								EnergyShieldLoopSound = null;
+							}
+						}
 						mechEnergyShield = false;
 						SoundEngine.PlaySound(Sounds.Mech.EnergyShieldOff, player.position);
 					}
@@ -200,11 +232,21 @@ namespace MountClass
         public override bool CanUseItem(Item item)
         {
             Player player = Main.LocalPlayer;
-            if (player.mount.Type == ModContent.MountType<Mech1>())
+            if (player.mount.Type == ModContent.MountType<Mech1>() && weaponSelect != 0)
             {
                 return false;
             }
             return true;
 		}
+		
+		//WIP fix. This will prevent Mechs from despawning when Players are mounted on them at the time of the World Exit.
+		/*public override void OnWorldUnload()
+		{
+			Player player = Main.LocalPlayer;
+            if (player.mount.Type == ModContent.MountType<Mech1>())
+			{
+				player.mount.Dismount(player);
+			}
+		}*/
     }
 }

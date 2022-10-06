@@ -70,7 +70,7 @@ namespace MountClass
         [DefaultValue(175)]
         [Range(0, 300)]
         [Increment(5)]
-        public int weaponRocketDamage {get; set;}
+        public int mechRocketDamage {get; set;}
 		
         [Label("[i:ClusterRocketI] Upgraded Rocket Damage")]
         [Tooltip("[Default: 300]")]
@@ -78,7 +78,7 @@ namespace MountClass
         [DefaultValue(300)]
         [Range(0, 300)]
         [Increment(5)]
-        public int weaponUpgradedRocketDamage {get; set;}
+        public int mechUpgradedRocketDamage {get; set;}
 		
 		[Label("[i:ClusterRocketI] Rocket Whitelist")]
 		[Tooltip("Accessories in this list will grant Upgraded Rockets for the Mech when equipped.\n(WORK IN PROGRESS)")]
@@ -90,7 +90,7 @@ namespace MountClass
         [DefaultValue(200)]
         [Range(0, 300)]
         [Increment(5)]
-        public int weaponGrenadeDamage {get; set;}
+        public int mechGrenadeDamage {get; set;}
 		
 		[Label("[i:Grenade] Grenade Whitelist")]
 		[Tooltip("Accessories in this list will grant Upgraded Grenades for the Mech when equipped.\n(WORK IN PROGRESS)")]
@@ -102,7 +102,7 @@ namespace MountClass
         [DefaultValue(60)]
         [Range(0, 300)]
         [Increment(5)]
-        public int weaponHeavyCannonDamage {get; set;}
+        public int mechHeavyCannonDamage {get; set;}
 		
         [Label("[i:HighVelocityBullet] Upgraded Heavy Cannon Damage")]
         [Tooltip("[Default: 90]")]
@@ -110,7 +110,7 @@ namespace MountClass
         [DefaultValue(90)]
         [Range(0, 300)]
         [Increment(5)]
-        public int weaponUpgradedHeavyCannonDamage {get; set;}
+        public int mechUpgradedHeavyCannonDamage {get; set;}
 		
 		[Label("[i:HighVelocityBullet] Heavy Cannon Whitelist")]
 		[Tooltip("Accessories in this list will grant an Upgraded Heavy Cannon for the Mech when equipped.\n(WORK IN PROGRESS)")]
@@ -122,7 +122,7 @@ namespace MountClass
         [DefaultValue(15)]
         [Range(0, 300)]
         [Increment(5)]
-        public int weaponMachineGunDamage {get; set;}
+        public int mechMachineGunDamage {get; set;}
 		
         [Label("[i:SilverBullet] Upgraded Machine Gun Damage")]
         [Tooltip("[Default: 30]")]
@@ -130,11 +130,10 @@ namespace MountClass
         [DefaultValue(30)]
         [Range(0, 300)]
         [Increment(5)]
-        public int weaponUpgradedMachineGunDamage {get; set;}
+        public int mechUpgradedMachineGunDamage {get; set;}
 		
 		[Label("[i:SilverBullet] Machine Gun Whitelist")]
 		[Tooltip("Accessories in this list will grant Upgraded Machine Gun for the Mech when equipped.\n(WORK IN PROGRESS)")]
 		public List<ItemDefinition> mechUpgradedMachineGunWhitelist = new List<ItemDefinition>();
-		
     }
 }
