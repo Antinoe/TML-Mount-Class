@@ -15,10 +15,31 @@ namespace MountClass.Mounts
 			//if (MountData.abilityCooldown <= 10)
 			var mcp = player.GetModPlayer<MountClassPlayer>();
 			Vector2 target = Main.screenPosition + new Vector2((float)Main.mouseX, (float)Main.mouseY);
+			if (mcp.selectTimer > 0)
+            {
+				mcp.selectTimer--;
+            }
+			if (mcp.mechUsageDelay > 0)
+            {
+				mcp.mechUsageDelay--;
+            }
 			if (mcp.rocketTimer > 0)
             {
 				mcp.rocketTimer--;
 			}
+			if (mcp.grenadeTimer > 0)
+            {
+				mcp.grenadeTimer--;
+			}
+			if (mcp.machineGunTimer > 0)
+            {
+				mcp.machineGunTimer--;
+			}
+			if (mcp.heavyCannonTimer > 0)
+            {
+				mcp.heavyCannonTimer--;
+			}
+
 			if (mcp.rocketTimer == 180)
 			{
 				if (MountClassConfigClient.Instance.enableVanillaSounds)
@@ -51,10 +72,6 @@ namespace MountClass.Mounts
 					SoundEngine.PlaySound(Sounds.Mech.RocketReload2, player.position);
 				}
 			}
-			if (mcp.grenadeTimer > 0)
-            {
-				mcp.grenadeTimer--;
-			}
 			if (mcp.grenadeTimer == 180)
 			{
 				SoundEngine.PlaySound(Sounds.Mech.ChainLoopLight, player.position);
@@ -77,14 +94,6 @@ namespace MountClass.Mounts
 				{
 					SoundEngine.PlaySound(Sounds.Mech.GrenadeReload1, player.position);
 				}
-			}
-			if (mcp.machineGunTimer > 0)
-            {
-				mcp.machineGunTimer--;
-			}
-			if (mcp.heavyCannonTimer > 0)
-            {
-				mcp.heavyCannonTimer--;
 			}
 			if (mcp.heavyCannonTimer == 80)
 			{
@@ -122,14 +131,6 @@ namespace MountClass.Mounts
 					SoundEngine.PlaySound(Sounds.Mech.HeavyCannonReload2, player.position);
 				}
 			}
-			if (mcp.selectTimer > 0)
-            {
-				mcp.selectTimer--;
-            }
-			if (mcp.mechUsageDelay > 0)
-            {
-				mcp.mechUsageDelay--;
-            }
 			if (!player.mouseInterface && mcp.mechUsageDelay <= 0)
 			{
 				if (Main.mouseLeft && mcp.weaponSelect <= 0)
@@ -224,20 +225,41 @@ namespace MountClass.Mounts
 					int casing = Projectile.NewProjectile(Projectile.GetSource_None(), player.Center, direction * -6f, ModContent.ProjectileType<GunCasing>(), 0, 0f, player.whoAmI);
 					if (mcp.mechUpgradeGun)
 					{
-						Main.projectile[proj].damage = MountClassConfig.Instance.mechUpgradedMachineGunDamage;
-						if (MountClassConfigClient.Instance.enableVanillaSounds)
+						//Using the Gatling.
+						if (mcp.machineGunGatling)
 						{
-							SoundEngine.PlaySound(SoundID.Item40, player.position);
+							Main.projectile[proj].damage = MountClassConfig.Instance.mechMachineGunDamage;
+							mcp.machineGunTimer = 5;
+							Projectile.NewProjectile(Projectile.GetSource_None(), player.Center, Vector2.Zero, ModContent.ProjectileType<ScreenshakeProjectileWeak>(), 0, 0, player.whoAmI);
+							if (MountClassConfigClient.Instance.enableVanillaSounds)
+							{
+								SoundEngine.PlaySound(SoundID.Item40, player.position);
+							}
+							else
+							{
+								SoundEngine.PlaySound(Sounds.Mech.GunFire, player.position);
+							}
 						}
 						else
 						{
-							SoundEngine.PlaySound(Sounds.Mech.GunUpgradedFire, player.position);
+							Main.projectile[proj].damage = MountClassConfig.Instance.mechUpgradedMachineGunDamage;
+							mcp.machineGunTimer = 10;
+							Projectile.NewProjectile(Projectile.GetSource_None(), player.Center, Vector2.Zero, ModContent.ProjectileType<ScreenshakeProjectileModerate>(), 0, 0, player.whoAmI);
+							if (MountClassConfigClient.Instance.enableVanillaSounds)
+							{
+								SoundEngine.PlaySound(SoundID.Item40, player.position);
+							}
+							else
+							{
+								SoundEngine.PlaySound(Sounds.Mech.GunUpgradedFire, player.position);
+							}
 						}
-						Projectile.NewProjectile(Projectile.GetSource_None(), player.Center, Vector2.Zero, ModContent.ProjectileType<ScreenshakeProjectileModerate>(), 0, 0, player.whoAmI);
 					}
 					else
 					{
 						Main.projectile[proj].damage = MountClassConfig.Instance.mechMachineGunDamage;
+						mcp.machineGunTimer = 10;
+						Projectile.NewProjectile(Projectile.GetSource_None(), player.Center, Vector2.Zero, ModContent.ProjectileType<ScreenshakeProjectileWeak>(), 0, 0, player.whoAmI);
 						if (MountClassConfigClient.Instance.enableVanillaSounds)
 						{
 							SoundEngine.PlaySound(SoundID.Item40, player.position);
@@ -246,23 +268,42 @@ namespace MountClass.Mounts
 						{
 							SoundEngine.PlaySound(Sounds.Mech.GunFire, player.position);
 						}
-						Projectile.NewProjectile(Projectile.GetSource_None(), player.Center, Vector2.Zero, ModContent.ProjectileType<ScreenshakeProjectileWeak>(), 0, 0, player.whoAmI);
 					}
-					mcp.machineGunTimer = 10;
+				}
+				if (Main.mouseRight && mcp.selectTimer <= 0 && mcp.weaponSelect == 4)
+				{
+					if (!mcp.machineGunGatling)
+					{
+						mcp.machineGunGatling = true;
+						mcp.selectTimer = 10;
+					}
+					else
+					{
+						mcp.machineGunGatling = false;
+						mcp.selectTimer = 10;
+					}
+					if (MountClassConfigClient.Instance.enableVanillaSounds)
+					{
+						SoundEngine.PlaySound(SoundID.Item149, player.position);
+					}
+					else
+					{
+						SoundEngine.PlaySound(Sounds.Mech.SwitchGun, player.position);
+					}
 				}
 				
 				if (Main.netMode != NetmodeID.Server)
 				{
 					//Keybind Weapon Selection
-					if (MountClass.SelectDisarmed.JustPressed)
+					if (MountClass.SelectDisarmed.JustPressed && mcp.selectTimer <= 0)
 					{
 						mcp.weaponSelect = 0;
-						//Main.NewText("No Weapon selected");
+						mcp.selectTimer = 10;
 					}
-					if (MountClass.SelectGun.JustPressed)
+					if (MountClass.SelectGun.JustPressed && mcp.selectTimer <= 0)
 					{
 						mcp.weaponSelect = 4;
-						//Main.NewText("Machine Gun selected");
+						mcp.selectTimer = 10;
 						if (MountClassConfigClient.Instance.enableVanillaSounds)
 						{
 							SoundEngine.PlaySound(SoundID.Item149, player.position);
@@ -272,10 +313,10 @@ namespace MountClass.Mounts
 							SoundEngine.PlaySound(Sounds.Mech.SwitchGun, player.position);
 						}
 					}
-					if (MountClass.SelectHeavyCannon.JustPressed)
+					if (MountClass.SelectHeavyCannon.JustPressed && mcp.selectTimer <= 0)
 					{
 						mcp.weaponSelect = 3;
-						//Main.NewText("Heavy Cannon selected");
+						mcp.selectTimer = 10;
 						if (MountClassConfigClient.Instance.enableVanillaSounds)
 						{
 							SoundEngine.PlaySound(SoundID.Item13, player.position);
@@ -285,10 +326,10 @@ namespace MountClass.Mounts
 							SoundEngine.PlaySound(Sounds.Mech.SwitchHeavyCannon, player.position);
 						}
 					}
-					if (MountClass.SelectGrenade.JustPressed)
+					if (MountClass.SelectGrenade.JustPressed && mcp.selectTimer <= 0)
 					{
 						mcp.weaponSelect = 2;
-						//Main.NewText("Grenade Launcher selected");
+						mcp.selectTimer = 10;
 						if (MountClassConfigClient.Instance.enableVanillaSounds)
 						{
 							SoundEngine.PlaySound(SoundID.Item108, player.position);
@@ -298,10 +339,10 @@ namespace MountClass.Mounts
 							SoundEngine.PlaySound(Sounds.Mech.SwitchGrenade, player.position);
 						}
 					}
-					if (MountClass.SelectRocket.JustPressed)
+					if (MountClass.SelectRocket.JustPressed && mcp.selectTimer <= 0)
 					{
 						mcp.weaponSelect = 1;
-						//Main.NewText("Rocket Launcher selected");
+						mcp.selectTimer = 10;
 						if (MountClassConfigClient.Instance.enableVanillaSounds)
 						{
 							SoundEngine.PlaySound(SoundID.Item13, player.position);

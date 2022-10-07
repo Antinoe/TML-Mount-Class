@@ -45,6 +45,7 @@ namespace MountClass
 		public int grenadeAmmo;
 		public int weapponDelay;
 		public int machineGunTimer;
+		public bool machineGunGatling;
 		public int heavyCannonTimer;
 		public int weaponSelect;
 		public int selectTimer;
