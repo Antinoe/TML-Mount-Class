@@ -13,11 +13,13 @@ using Terraria.Localization;
 using Terraria.GameContent.Personalities;
 using Terraria.GameContent.Bestiary;
 using MountClass.Mounts;
+using MountClass.Projectiles;
 
 namespace MountClass.NPCs
 {
     public class Mech1NPC : ModNPC
     {
+		private bool landing;
         public override string Texture
 		{
 			get
@@ -36,7 +38,7 @@ namespace MountClass.NPCs
             NPC.HitSound = SoundID.NPCHit4;
             NPC.DeathSound = SoundID.Item53;
             NPC.knockBackResist = 0.75f;
-			//NPC.despawnEncouraged = false;
+			NPC.knockBackResist = 0f;
         }
         public override void SetStaticDefaults()
         {
@@ -75,6 +77,31 @@ namespace MountClass.NPCs
 		public override bool NeedSaving()
 		{
 			return true;
+		}
+		public override void AI()
+		{
+			Player player = Main.LocalPlayer;
+			//Landing
+			if (NPC.velocity.Y == 0)
+			{
+				if (!landing)
+				{
+					landing = true;
+					Projectile.NewProjectile(Projectile.GetSource_None(), NPC.Center, Vector2.Zero, ModContent.ProjectileType<ScreenshakeProjectileModerate>(), 0, 0, player.whoAmI);
+					if (MountClassConfigClient.Instance.enableVanillaSounds)
+					{
+					}
+					else
+					{
+						SoundEngine.PlaySound(Sounds.Mech.MechStep, NPC.position);
+						SoundEngine.PlaySound(Sounds.Mech.MechStep, NPC.position);
+					}
+				}
+			}
+			else
+			{
+				landing = false;
+			}
 		}
     }
 }
