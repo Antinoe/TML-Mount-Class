@@ -42,11 +42,14 @@ namespace MountClass.Items
 		
 		public override void AddRecipes()
 		{
-			CreateRecipe(1)
-			.AddRecipeGroup(RecipeGroupID.IronBar, 30)
-			.AddIngredient(ItemID.Grenade, 5)
-			.AddTile(TileID.Anvils)
-			.Register();
+			if (MountClassConfig.Instance.mechItemCraftable)
+			{
+				CreateRecipe(1)
+				.AddRecipeGroup(RecipeGroupID.IronBar, 30)
+				.AddIngredient(ItemID.Grenade, 5)
+				.AddTile(TileID.Anvils)
+				.Register();
+			}
 		}
     }
 }

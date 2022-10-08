@@ -12,6 +12,14 @@ namespace MountClass
 		
         public static MountClassConfig Instance;
 		
+	[Header("General")]
+		
+		[Label("[i:MountClass/Mech1Deploy] Enable Mech Deployment recipe")]
+		[Tooltip("If false, Players cannot craft this.\n(REQUIRES MOD RELOAD.)\n[Default: On]")]
+		[DefaultValue(true)]
+		[ReloadRequired]
+		public bool mechItemCraftable {get; set;}
+		
 	[Header("Mech Defense")]
 		
         [Label("[i:ObsidianShield] Armor")]
