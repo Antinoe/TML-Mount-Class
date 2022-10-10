@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
+using Terraria.ID;
 using Terraria.ModLoader.Config;
 
 namespace MountClass
@@ -40,7 +41,11 @@ namespace MountClass
 		
 		[Label("[i:ObsidianShield] Armor Whitelist")]
 		[Tooltip("Accessories in this list will grant Upgraded Armor for the Mech when equipped.\n(WORK IN PROGRESS)")]
-		public List<ItemDefinition> mechUpgradedArmorWhitelist = new List<ItemDefinition>();
+		public List<ItemDefinition> mechUpgradedArmorWhitelist = new List<ItemDefinition>
+			{
+				new ItemDefinition(ItemID.CobaltShield),
+				new ItemDefinition(ItemID.ObsidianShield)
+			};
 		
         [Label("[i:Stinger] Thorns")]
         [Tooltip("The percentage of damage the Mech will reflect.\n[Default: 0.25]")]
