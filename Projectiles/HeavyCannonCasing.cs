@@ -19,8 +19,8 @@ namespace MountClass.Projectiles
 
         public override void SetDefaults()
         {
-            Projectile.width = 5;
-            Projectile.height = 7;
+            Projectile.width = 12;
+            Projectile.height = 20;
             Projectile.aiStyle = 14;
             Projectile.timeLeft = 600;
             Projectile.light = 0f;
