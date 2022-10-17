@@ -270,7 +270,7 @@ namespace MountClass.Mounts
 						}
 					}
 				}
-				if (Main.mouseRight && mcp.selectTimer <= 0 && mcp.weaponSelect == 4)
+				if (Main.mouseRight && mcp.mechUpgradeGun && mcp.selectTimer <= 0 && mcp.weaponSelect == 4)
 				{
 					if (!mcp.machineGunGatling)
 					{
