@@ -104,11 +104,7 @@ namespace MountClass
 		[Tooltip("Accessories in this list will grant Upgraded Rockets for the Mech when equipped.\n(WORK IN PROGRESS)")]
 		public List<ItemDefinition> mechUpgradedRocketWhitelist = new List<ItemDefinition>
 			{
-				new ItemDefinition(ItemID.WarriorEmblem),
-				new ItemDefinition(ItemID.ClimbingClaws),
-				new ItemDefinition(ItemID.ShoeSpikes),
-				new ItemDefinition(ItemID.TigerClimbingGear),
-				new ItemDefinition(ItemID.MasterNinjaGear)
+				new ItemDefinition(ItemID.WarriorEmblem)
 			};
 		
         [Label("[i:Grenade] Grenade Damage")]
@@ -123,11 +119,7 @@ namespace MountClass
 		[Tooltip("Accessories in this list will grant Upgraded Grenades for the Mech when equipped.\n(WORK IN PROGRESS)")]
 		public List<ItemDefinition> mechUpgradedGrenadeWhitelist = new List<ItemDefinition>
 			{
-				new ItemDefinition(ItemID.SorcererEmblem),
-				new ItemDefinition(ItemID.ClimbingClaws),
-				new ItemDefinition(ItemID.ShoeSpikes),
-				new ItemDefinition(ItemID.TigerClimbingGear),
-				new ItemDefinition(ItemID.MasterNinjaGear)
+				new ItemDefinition(ItemID.SorcererEmblem)
 			};
 		
         [Label("[i:HighVelocityBullet] Heavy Cannon Damage")]
