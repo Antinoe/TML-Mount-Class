@@ -43,8 +43,9 @@ namespace MountClass
 		[Tooltip("Accessories in this list will grant Upgraded Armor for the Mech when equipped.\n(WORK IN PROGRESS)")]
 		public List<ItemDefinition> mechUpgradedArmorWhitelist = new List<ItemDefinition>
 			{
-				new ItemDefinition(ItemID.CobaltShield),
-				new ItemDefinition(ItemID.ObsidianShield)
+				new ItemDefinition(ItemID.DepthMeter),
+				new ItemDefinition(ItemID.GPS),
+				new ItemDefinition(ItemID.PDA)
 			};
 		
         [Label("[i:Stinger] Thorns")]
@@ -73,7 +74,13 @@ namespace MountClass
 		
 		[Label("[i:ObsidianShield] Thorns Whitelist")]
 		[Tooltip("Accessories in this list will grant Upgraded Thorns for the Mech when equipped.\n(WORK IN PROGRESS)")]
-		public List<ItemDefinition> mechUpgradedThornsWhitelist = new List<ItemDefinition>();
+		public List<ItemDefinition> mechUpgradedThornsWhitelist = new List<ItemDefinition>
+			{
+				new ItemDefinition(ItemID.ClimbingClaws),
+				new ItemDefinition(ItemID.ShoeSpikes),
+				new ItemDefinition(ItemID.TigerClimbingGear),
+				new ItemDefinition(ItemID.MasterNinjaGear)
+			};
 		
 	[Header("Mech Arsenal")]
 		
@@ -95,7 +102,14 @@ namespace MountClass
 		
 		[Label("[i:ClusterRocketI] Rocket Whitelist")]
 		[Tooltip("Accessories in this list will grant Upgraded Rockets for the Mech when equipped.\n(WORK IN PROGRESS)")]
-		public List<ItemDefinition> mechUpgradedRocketWhitelist = new List<ItemDefinition>();
+		public List<ItemDefinition> mechUpgradedRocketWhitelist = new List<ItemDefinition>
+			{
+				new ItemDefinition(ItemID.WarriorEmblem),
+				new ItemDefinition(ItemID.ClimbingClaws),
+				new ItemDefinition(ItemID.ShoeSpikes),
+				new ItemDefinition(ItemID.TigerClimbingGear),
+				new ItemDefinition(ItemID.MasterNinjaGear)
+			};
 		
         [Label("[i:Grenade] Grenade Damage")]
         [Tooltip("[Default: 200]")]
@@ -107,7 +121,14 @@ namespace MountClass
 		
 		[Label("[i:Grenade] Grenade Whitelist")]
 		[Tooltip("Accessories in this list will grant Upgraded Grenades for the Mech when equipped.\n(WORK IN PROGRESS)")]
-		public List<ItemDefinition> mechUpgradedGrenadeWhitelist = new List<ItemDefinition>();
+		public List<ItemDefinition> mechUpgradedGrenadeWhitelist = new List<ItemDefinition>
+			{
+				new ItemDefinition(ItemID.SorcererEmblem),
+				new ItemDefinition(ItemID.ClimbingClaws),
+				new ItemDefinition(ItemID.ShoeSpikes),
+				new ItemDefinition(ItemID.TigerClimbingGear),
+				new ItemDefinition(ItemID.MasterNinjaGear)
+			};
 		
         [Label("[i:HighVelocityBullet] Heavy Cannon Damage")]
         [Tooltip("[Default: 60]")]
@@ -127,7 +148,13 @@ namespace MountClass
 		
 		[Label("[i:HighVelocityBullet] Heavy Cannon Whitelist")]
 		[Tooltip("Accessories in this list will grant an Upgraded Heavy Cannon for the Mech when equipped.\n(WORK IN PROGRESS)")]
-		public List<ItemDefinition> mechUpgradedHeavyCannonWhitelist = new List<ItemDefinition>();
+		public List<ItemDefinition> mechUpgradedHeavyCannonWhitelist = new List<ItemDefinition>
+			{
+				new ItemDefinition(ItemID.SummonerEmblem),
+				new ItemDefinition(ItemID.RifleScope),
+				new ItemDefinition(ItemID.SniperScope),
+				new ItemDefinition(ItemID.ReconScope)
+			};
 		
         [Label("[i:SilverBullet] Machine Gun Damage")]
         [Tooltip("[Default: 15]")]
@@ -147,6 +174,10 @@ namespace MountClass
 		
 		[Label("[i:SilverBullet] Machine Gun Whitelist")]
 		[Tooltip("Accessories in this list will grant Upgraded Machine Gun for the Mech when equipped.\n(WORK IN PROGRESS)")]
-		public List<ItemDefinition> mechUpgradedMachineGunWhitelist = new List<ItemDefinition>();
+		public List<ItemDefinition> mechUpgradedMachineGunWhitelist = new List<ItemDefinition>
+			{
+				new ItemDefinition(ItemID.RangerEmblem),
+				new ItemDefinition(ItemID.SharkToothNecklace)
+			};
     }
 }
