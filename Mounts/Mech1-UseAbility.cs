@@ -2,7 +2,9 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ModLoader;
+using Terraria.DataStructures;
 using Terraria.ID;
+using MountClass.Items;
 using MountClass.NPCs;
 using MountClass.Projectiles; //This is here so that Screenshake works.
 
@@ -12,8 +14,15 @@ namespace MountClass.Mounts
 	{
 		public override void UseAbility(Player player, Vector2 mousePosition, bool toggleOn)
 		{
-			//if (MountData.abilityCooldown <= 10)
 			var mcp = player.GetModPlayer<MountClassPlayer>();
+			//player.selectedItem = 11;
+			//Main.mouseItem.type = ItemID.Gel;
+			if (mcp.weaponSelected)
+			{
+				//player.inventory[58].type = ItemID.Handgun;
+				player.inventory[58].type = ModContent.ItemType<Mech1Weaponry>();
+				player.selectedItem = 58;
+			}
 			Vector2 target = Main.screenPosition + new Vector2((float)Main.mouseX, (float)Main.mouseY);
 			if (mcp.selectTimer > 0)
             {
@@ -295,15 +304,16 @@ namespace MountClass.Mounts
 				if (Main.netMode != NetmodeID.Server)
 				{
 					//Keybind Weapon Selection
-					if (MountClass.SelectDisarmed.JustPressed && mcp.selectTimer <= 0)
+					if (MountClass.SelectDisarmed.JustPressed)
 					{
+						mcp.weaponSelected = false;
 						mcp.weaponSelect = 0;
-						mcp.selectTimer = 10;
 					}
 					if (MountClass.SelectGun.JustPressed && mcp.selectTimer <= 0)
 					{
+						mcp.weaponSelected = true;
 						mcp.weaponSelect = 4;
-						mcp.selectTimer = 10;
+						mcp.selectTimer = 60;
 						if (MountClassConfigClient.Instance.enableVanillaSounds)
 						{
 							SoundEngine.PlaySound(SoundID.Item149, player.position);
@@ -315,8 +325,9 @@ namespace MountClass.Mounts
 					}
 					if (MountClass.SelectHeavyCannon.JustPressed && mcp.selectTimer <= 0)
 					{
+						mcp.weaponSelected = true;
 						mcp.weaponSelect = 3;
-						mcp.selectTimer = 10;
+						mcp.selectTimer = 60;
 						if (MountClassConfigClient.Instance.enableVanillaSounds)
 						{
 							SoundEngine.PlaySound(SoundID.Item13, player.position);
@@ -328,8 +339,9 @@ namespace MountClass.Mounts
 					}
 					if (MountClass.SelectGrenade.JustPressed && mcp.selectTimer <= 0)
 					{
+						mcp.weaponSelected = true;
 						mcp.weaponSelect = 2;
-						mcp.selectTimer = 10;
+						mcp.selectTimer = 60;
 						if (MountClassConfigClient.Instance.enableVanillaSounds)
 						{
 							SoundEngine.PlaySound(SoundID.Item108, player.position);
@@ -341,8 +353,9 @@ namespace MountClass.Mounts
 					}
 					if (MountClass.SelectRocket.JustPressed && mcp.selectTimer <= 0)
 					{
+						mcp.weaponSelected = true;
 						mcp.weaponSelect = 1;
-						mcp.selectTimer = 10;
+						mcp.selectTimer = 60;
 						if (MountClassConfigClient.Instance.enableVanillaSounds)
 						{
 							SoundEngine.PlaySound(SoundID.Item13, player.position);

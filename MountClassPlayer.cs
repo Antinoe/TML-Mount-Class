@@ -47,6 +47,7 @@ namespace MountClass
 		public int machineGunTimer;
 		public bool machineGunGatling;
 		public int heavyCannonTimer;
+		public bool weaponSelected;
 		public int weaponSelect;
 		public int selectTimer;
 		public int mechUsageDelay;
@@ -92,6 +93,14 @@ namespace MountClass
 				mechWelcomeCooldown--;
 			}
 			
+			//Prevent Drowning
+			if (player.mount.Type == ModContent.MountType<Mech1>())
+			{
+				/*if (Player.breath < Player.breathMax)
+				{
+					Player.breath = Player.breathMax;
+				}*/
+			}
 			//Energy Shield
 			if (player.mount.Type == ModContent.MountType<Mech1>())
 			{
