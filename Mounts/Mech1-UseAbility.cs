@@ -115,6 +115,7 @@ namespace MountClass.Mounts
 				else
 				{
 					SoundEngine.PlaySound(Sounds.Mech.HeavyCannonReload1, player.position);
+					SoundEngine.PlaySound(Sounds.Mech.EjectHeavyCannon, player.position);
 				}
 			}
 			if (mcp.heavyCannonTimer == 60)

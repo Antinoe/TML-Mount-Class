@@ -163,6 +163,12 @@ namespace MountClass
 				PitchVariance = 0.5f,
 				MaxInstances = 12
 			};
+			public static readonly SoundStyle EjectHeavyCannon = new($"{nameof(MountClass)}/Assets/Sounds/EjectHeavyCannon")
+			{
+				Volume = 0.75f,
+				PitchVariance = 0.5f,
+				MaxInstances = 12
+			};
 		}
 	}
 }
