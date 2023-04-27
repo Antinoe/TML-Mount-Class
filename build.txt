@@ -1,7 +1,7 @@
 author = Antinous
 version = 1.0
 displayName = Mount Class
-homepage = https://github.com/Antinoe/Mount-Class
+homepage = https://github.com/Antinoe/TML-Mount-Class
 hideCode = false
 hideResources = false
 includeSource = true
