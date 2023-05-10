@@ -11,12 +11,6 @@ namespace MountClass.Projectiles
     public class HeavyCannonCasing : ModProjectile
     {
 		protected int collide = 4;
-		
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Heavy Cannon Casing");
-        }
-
         public override void SetDefaults()
         {
             Projectile.width = 12;

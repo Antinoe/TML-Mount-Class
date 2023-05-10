@@ -56,7 +56,7 @@ namespace MountClass.NPCs
             button2 = ("Test");
         }
 
-        public override void OnChatButtonClicked(bool firstButton, ref bool openShop)
+        public override void OnChatButtonClicked(bool firstButton, ref string shopName)
         {
 			Player player = Main.LocalPlayer;
             if (firstButton)

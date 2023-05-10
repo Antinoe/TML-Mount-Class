@@ -1,0 +1,14 @@
+Mods: {
+	MountClass: {
+		Items: {
+			Mech1Deploy: {
+				DisplayName: Mech Deployment
+				Tooltip: "Deploys a Mech at your position"
+			}
+			Mech1Weaponry: {
+				DisplayName: Mech Weaponry
+				Tooltip: "This is a dummy item\nYou shouldn't be able to view this tooltip"
+			}
+		}
+	}
+}

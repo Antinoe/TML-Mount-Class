@@ -11,12 +11,6 @@ namespace MountClass.Projectiles
     public class GunCasing : ModProjectile
     {
 		protected int collide = 4;
-		
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Gun Casing");
-        }
-
         public override void SetDefaults()
         {
             Projectile.width = 8;

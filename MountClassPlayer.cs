@@ -186,71 +186,64 @@ namespace MountClass
 				}
 			}
 		}
-		
-        public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource, ref int cooldownCounter)
+
+        public override void ModifyHurt(ref Player.HurtModifiers modifiers)
         {
             Player player = Main.LocalPlayer;
+			var damage = modifiers.FinalDamage.Flat;
             if (player.mount.Type == ModContent.MountType<Mech1>())
 			{
-				if (player.immuneTime > 0)
+				//damage = (int)((damage - player.statDefense) * (1f - player.endurance));
+				damage = (int)((damage) * (1f - mechArmor));
+				//^ This calculates the received damage for us. We can then use the variable of ``damage`` later on to refer to the output damage after Defense and Endurance apply.
+				player.immune = true;
+				if (damage <= 1)
 				{
-					return false;
+					player.immuneTime = 20;
 				}
 				else
 				{
-					//damage = (int)((damage - player.statDefense) * (1f - player.endurance));
-					damage = (int)((damage) * (1f - mechArmor));
-					//^ This calculates the received damage for us. We can then use the variable of ``damage`` later on to refer to the output damage after Defense and Endurance apply.
-					player.immune = true;
-					if (damage <= 1)
+					player.immuneTime = 40;
+				}
+				modifiers.DisableSound();
+				SoundEngine.PlaySound(SoundID.NPCHit4, Player.position);
+				//Energy Shield
+				if (mechEnergyShield)
+				{
+					if (damage >= player.statMana)
 					{
-						player.immuneTime = 20;
-					}
-					else
-					{
-						player.immuneTime = 40;
-					}
-					playSound = false;
-					SoundEngine.PlaySound(SoundID.NPCHit4, Player.position);
-					//Energy Shield
-					if (mechEnergyShield)
-					{
-						if (damage >= player.statMana)
+						if (EnergyShieldLoopSound is SlotId slot)
 						{
-							if (EnergyShieldLoopSound is SlotId slot)
+							if (SoundEngine.TryGetActiveSound(slot, out var sound))
 							{
-								if (SoundEngine.TryGetActiveSound(slot, out var sound))
-								{
-									sound.Stop();
-									EnergyShieldLoopSound = null;
-								}
+								sound.Stop();
+								EnergyShieldLoopSound = null;
 							}
-							mechEnergyShield = false;
-							SoundEngine.PlaySound(Sounds.Mech.EnergyShieldOff, player.position);
 						}
-						else
-						{
-							player.statMana -= damage;
-						}
+						mechEnergyShield = false;
+						SoundEngine.PlaySound(Sounds.Mech.EnergyShieldOff, player.position);
 					}
-					//Without Energy Shield
 					else
 					{
-						if (damage >= player.statLife)
-						{
-							player.statLife = player.statLifeMax;
-							mechDestroyed = true;
-							player.mount.Dismount(player);
-						}
-						else
-						{
-							player.statLife -= damage;
-						}
+						player.statMana -= (int)damage;
 					}
-					return false;
+				}
+				//Without Energy Shield
+				else
+				{
+					if (damage >= player.statLife)
+					{
+						player.statLife = player.statLifeMax;
+						mechDestroyed = true;
+						player.mount.Dismount(player);
+					}
+					else
+					{
+						player.statLife -= (int)damage;
+					}
 				}
 			}
-            return true;
+            base.ModifyHurt(ref modifiers);
         }
 		
         public override bool CanUseItem(Item item)

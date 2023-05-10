@@ -10,13 +10,6 @@ namespace MountClass.Items
 {
 	public class Mech1Deploy : ModItem
 	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Mech Deployment");
-			Tooltip.SetDefault("Deploys a Mech at your position");
-			//SacrificeTotal = 1;
-        }
-
 		public override void SetDefaults()
 		{
 			Item.width = 48;

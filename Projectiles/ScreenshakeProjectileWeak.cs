@@ -7,7 +7,6 @@ namespace MountClass.Projectiles
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Weak Screenshake");
 			Main.projFrames[Projectile.type] = 1;
 		}
 		public override void SetDefaults()
