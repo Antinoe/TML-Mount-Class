@@ -5,11 +5,11 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using MountClass.NPCs;
 
-
 namespace MountClass.Items
 {
 	public class Mech1Deploy : ModItem
 	{
+		public override string Texture => "MountClass/Items/Mech1Item";
 		public override void SetDefaults()
 		{
 			Item.width = 48;
@@ -44,5 +44,9 @@ namespace MountClass.Items
 				.Register();
 			}
 		}
+    }
+	public class Mech1Weaponry : ModItem
+	{
+		public override string Texture => "MountClass/Items/Mech1Item";
     }
 }

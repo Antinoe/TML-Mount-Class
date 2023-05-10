@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using Microsoft.Xna.Framework;
-using Terraria;
 using Terraria.ModLoader;
 
 namespace MountClass
@@ -33,5 +30,9 @@ namespace MountClass
             SelectRocket = null;
             EnergyShield = null;
 		}
+
+        internal class Items
+        {
+        }
     }
 }

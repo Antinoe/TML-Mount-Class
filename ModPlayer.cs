@@ -1,31 +1,15 @@
-using System; //For Math functions to work.
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Graphics;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.GameInput;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.ModLoader.IO;
 using Terraria.Audio;
-using Terraria.GameContent;
 using ReLogic.Utilities;
 using MountClass.Mounts;
-using Terraria.GameInput; //This allows the ``ProcessTriggers`` Method to work.
 
 namespace MountClass
 {
     public class MountClassPlayer : ModPlayer
     {
-        public int screenShakeTimerVeryWeak;
-        public int screenShakeTimerWeak;
-        public int screenShakeTimerModerate;
-        public int screenShakeTimerStrong;
 		public bool mechUpgradeGun;
 		public bool mechUpgradeGrenade;
 		public bool mechUpgradeRocket;
@@ -71,23 +55,6 @@ namespace MountClass
 		public override void PostUpdateMiscEffects()
 		{
 			Player player = Main.LocalPlayer;
-			//Screenshake
-			if (screenShakeTimerVeryWeak > 0)
-			{
-				screenShakeTimerVeryWeak--;
-			}
-			if (screenShakeTimerWeak > 0)
-			{
-				screenShakeTimerWeak--;
-			}
-			if (screenShakeTimerModerate > 0)
-			{
-				screenShakeTimerModerate--;
-			}
-			if (screenShakeTimerStrong > 0)
-			{
-				screenShakeTimerStrong--;
-			}
 			if (mechWelcomeCooldown > 0)
 			{
 				mechWelcomeCooldown--;
@@ -132,30 +99,6 @@ namespace MountClass
 				}
 			}
 		}
-		
-        public override void ModifyScreenPosition() //Screenshake
-        {
-            if (screenShakeTimerVeryWeak > 0)
-            {
-				Main.screenPosition.X += (float)Math.Round(Main.rand.Next((int)(0f - 1), (int)1) * 1.10f);
-				Main.screenPosition.Y += (float)Math.Round(Main.rand.Next((int)(0f - 1), (int)1) * 1.10f);
-            }
-            if (screenShakeTimerWeak > 0)
-            {
-				Main.screenPosition.X += (float)Math.Round(Main.rand.Next((int)(0f - 1), (int)1) * 1.50f);
-				Main.screenPosition.Y += (float)Math.Round(Main.rand.Next((int)(0f - 1), (int)1) * 1.50f);
-            }
-            if (screenShakeTimerModerate > 0)
-            {
-				Main.screenPosition.X += (float)Math.Round(Main.rand.Next((int)(0f - 1), (int)1) * 2.00f);
-				Main.screenPosition.Y += (float)Math.Round(Main.rand.Next((int)(0f - 1), (int)1) * 2.00f);
-            }
-            if (screenShakeTimerStrong > 0)
-            {
-				Main.screenPosition.X += (float)Math.Round(Main.rand.Next((int)(0f - 1), (int)1) * 4.00f);
-				Main.screenPosition.Y += (float)Math.Round(Main.rand.Next((int)(0f - 1), (int)1) * 4.00f);
-            }
-        }
 		
 		public override void ProcessTriggers(TriggersSet triggersSet)
 		{
