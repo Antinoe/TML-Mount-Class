@@ -14,6 +14,7 @@ using Terraria.GameContent.Personalities;
 using Terraria.GameContent.Bestiary;
 using MountClass.Mounts;
 using MountClass.Projectiles;
+using Terraria.Graphics.CameraModifiers;
 
 namespace MountClass.NPCs
 {
@@ -87,7 +88,8 @@ namespace MountClass.NPCs
 				if (!landing)
 				{
 					landing = true;
-					Projectile.NewProjectile(Projectile.GetSource_None(), NPC.Center, Vector2.Zero, ModContent.ProjectileType<ScreenshakeProjectileModerate>(), 0, 0, player.whoAmI);
+					PunchCameraModifier screenshake = new PunchCameraModifier(Main.LocalPlayer.Center, (Main.rand.NextFloat() * (MathHelper.TwoPi)).ToRotationVector2(), 1f, 6f, 20, 1000f, FullName);
+					Main.instance.CameraModifiers.Add(screenshake);
 					if (MountClassConfigClient.Instance.enableVanillaSounds)
 					{
 					}
