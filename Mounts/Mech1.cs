@@ -134,7 +134,7 @@ namespace MountClass.Mounts
 						if (!mcp.stepping)
 						{
 							mcp.stepping = true;
-							PunchCameraModifier screenshake = new PunchCameraModifier(Main.LocalPlayer.Center, (Main.rand.NextFloat() * (MathHelper.TwoPi)).ToRotationVector2(), 1f, 6f, 20, 1000f, FullName);
+							PunchCameraModifier screenshake = new PunchCameraModifier(Main.LocalPlayer.Center, (Main.rand.NextFloat() * (MathHelper.TwoPi)).ToRotationVector2(), 1f, 6f, 20, 30f, FullName);
 							Main.instance.CameraModifiers.Add(screenshake);
 							if (MountClassConfigClient.Instance.enableVanillaSounds)
 							{
@@ -177,7 +177,7 @@ namespace MountClass.Mounts
 				if (!mcp.landing)
 				{
 					mcp.landing = true;
-					PunchCameraModifier screenshake = new PunchCameraModifier(Main.LocalPlayer.Center, (Main.rand.NextFloat() * (MathHelper.TwoPi)).ToRotationVector2(), 1f, 6f, 20, 1000f, FullName);
+					PunchCameraModifier screenshake = new PunchCameraModifier(Main.LocalPlayer.Center, (Main.rand.NextFloat() * (MathHelper.TwoPi)).ToRotationVector2(), 1f, 6f, 20, 75f, FullName);
 					Main.instance.CameraModifiers.Add(screenshake);
 					if (MountClassConfigClient.Instance.enableVanillaSounds)
 					{
@@ -350,7 +350,7 @@ namespace MountClass.Mounts
 					{
 						SoundEngine.PlaySound(Sounds.Mech.RocketFire, player.position);
 					}
-					PunchCameraModifier screenshake = new PunchCameraModifier(Main.LocalPlayer.Center, (Main.rand.NextFloat() * (MathHelper.TwoPi)).ToRotationVector2(), 1f, 6f, 20, 1000f, FullName);
+					PunchCameraModifier screenshake = new PunchCameraModifier(Main.LocalPlayer.Center, (Main.rand.NextFloat() * (MathHelper.TwoPi)).ToRotationVector2(), 1f, 6f, 20, 150f, FullName);
 					Main.instance.CameraModifiers.Add(screenshake);
 				}
 				if (Main.mouseLeft && mcp.grenadeTimer <= 0 && mcp.weaponSelect == 2)
@@ -386,7 +386,7 @@ namespace MountClass.Mounts
 					{
 						SoundEngine.PlaySound(Sounds.Mech.GrenadeFire, player.position);
 					}
-					PunchCameraModifier screenshake = new PunchCameraModifier(Main.LocalPlayer.Center, (Main.rand.NextFloat() * (MathHelper.TwoPi)).ToRotationVector2(), 1f, 6f, 20, 1000f, FullName);
+					PunchCameraModifier screenshake = new PunchCameraModifier(Main.LocalPlayer.Center, (Main.rand.NextFloat() * (MathHelper.TwoPi)).ToRotationVector2(), 1f, 6f, 20, 150f, FullName);
 					Main.instance.CameraModifiers.Add(screenshake);
 				}
 				if (Main.mouseLeft && mcp.heavyCannonTimer <= 0 && mcp.weaponSelect == 3)
@@ -410,7 +410,7 @@ namespace MountClass.Mounts
 					{
 						SoundEngine.PlaySound(Sounds.Mech.HeavyCannonFire, player.position);
 					}
-					PunchCameraModifier screenshake = new PunchCameraModifier(Main.LocalPlayer.Center, (Main.rand.NextFloat() * (MathHelper.TwoPi)).ToRotationVector2(), 1f, 6f, 20, 1000f, FullName);
+					PunchCameraModifier screenshake = new PunchCameraModifier(Main.LocalPlayer.Center, (Main.rand.NextFloat() * (MathHelper.TwoPi)).ToRotationVector2(), 1f, 6f, 20, 150f, FullName);
 					Main.instance.CameraModifiers.Add(screenshake);
 				}
 				if (Main.mouseLeft && mcp.machineGunTimer <= 0 && mcp.weaponSelect == 4)
@@ -425,7 +425,7 @@ namespace MountClass.Mounts
 						{
 							Main.projectile[proj].damage = MountClassConfig.Instance.mechMachineGunDamage;
 							mcp.machineGunTimer = 5;
-							PunchCameraModifier screenshake = new PunchCameraModifier(Main.LocalPlayer.Center, (Main.rand.NextFloat() * (MathHelper.TwoPi)).ToRotationVector2(), 1f, 6f, 20, 1000f, FullName);
+							PunchCameraModifier screenshake = new PunchCameraModifier(Main.LocalPlayer.Center, (Main.rand.NextFloat() * (MathHelper.TwoPi)).ToRotationVector2(), 1f, 6f, 20, 150f, FullName);
 							Main.instance.CameraModifiers.Add(screenshake);
 							if (MountClassConfigClient.Instance.enableVanillaSounds)
 							{
@@ -440,7 +440,7 @@ namespace MountClass.Mounts
 						{
 							Main.projectile[proj].damage = MountClassConfig.Instance.mechUpgradedMachineGunDamage;
 							mcp.machineGunTimer = 10;
-							PunchCameraModifier screenshake = new PunchCameraModifier(Main.LocalPlayer.Center, (Main.rand.NextFloat() * (MathHelper.TwoPi)).ToRotationVector2(), 1f, 6f, 20, 1000f, FullName);
+							PunchCameraModifier screenshake = new PunchCameraModifier(Main.LocalPlayer.Center, (Main.rand.NextFloat() * (MathHelper.TwoPi)).ToRotationVector2(), 1f, 6f, 20, 150f, FullName);
 							Main.instance.CameraModifiers.Add(screenshake);
 							if (MountClassConfigClient.Instance.enableVanillaSounds)
 							{
@@ -456,7 +456,7 @@ namespace MountClass.Mounts
 					{
 						Main.projectile[proj].damage = MountClassConfig.Instance.mechMachineGunDamage;
 						mcp.machineGunTimer = 10;
-						PunchCameraModifier screenshake = new PunchCameraModifier(Main.LocalPlayer.Center, (Main.rand.NextFloat() * (MathHelper.TwoPi)).ToRotationVector2(), 1f, 6f, 20, 1000f, FullName);
+						PunchCameraModifier screenshake = new PunchCameraModifier(Main.LocalPlayer.Center, (Main.rand.NextFloat() * (MathHelper.TwoPi)).ToRotationVector2(), 1f, 6f, 20, 150f, FullName);
 						Main.instance.CameraModifiers.Add(screenshake);
 						if (MountClassConfigClient.Instance.enableVanillaSounds)
 						{
