@@ -136,7 +136,7 @@ namespace MountClass
 			var damage = modifiers.FinalDamage.Flat;
             if (player.mount.Type == ModContent.MountType<Mech1>())
 			{
-				modifiers.KnockbackImmunityEffectiveness *= 100f;
+				modifiers.Knockback *= 0.05f;
 				//damage = (int)((damage - player.statDefense) * (1f - player.endurance));
 				damage = (int)((damage) * (1f - mechArmor));
 				//^ This calculates the received damage for us. We can then use the variable of ``damage`` later on to refer to the output damage after Defense and Endurance apply.
