@@ -90,14 +90,8 @@ namespace MountClass.NPCs
 					landing = true;
 					PunchCameraModifier screenshake = new PunchCameraModifier(Main.LocalPlayer.Center, (Main.rand.NextFloat() * (MathHelper.TwoPi)).ToRotationVector2(), 1f, 6f, 20, 1000f, FullName);
 					Main.instance.CameraModifiers.Add(screenshake);
-					if (MountClassConfigClient.Instance.enableVanillaSounds)
-					{
-					}
-					else
-					{
-						SoundEngine.PlaySound(Sounds.Mech.MechStep, NPC.position);
-						SoundEngine.PlaySound(Sounds.Mech.MechStep, NPC.position);
-					}
+					SoundEngine.PlaySound(Sounds.Mech.MechStep, NPC.position);
+					SoundEngine.PlaySound(Sounds.Mech.MechStep, NPC.position);
 				}
 			}
 			else
