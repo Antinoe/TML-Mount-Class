@@ -10,7 +10,7 @@ using Terraria.Graphics.CameraModifiers;
 
 namespace MountClass.Mounts
 {
-	public partial class Mech1 : ModMount
+	public class Mech1 : ModMount
 	{
 		public override void SetStaticDefaults()
 		{
@@ -76,14 +76,7 @@ namespace MountClass.Mounts
 				}
 				mcp.mechWelcomeCooldown = MountClassConfigClient.Instance.mechWelcomeCooldown;
 			}
-			if (MountClassConfigClient.Instance.enableVanillaSounds)
-			{
-				SoundEngine.PlaySound(SoundID.Dig, player.position);
-			}
-			else
-			{
-				SoundEngine.PlaySound(Sounds.Mech.MechEnter, player.position);
-			}
+			SoundEngine.PlaySound(Sounds.Mech.MechEnter, player.position);
 		}
 
 		public override void Dismount(Player player, ref bool skipDust)
@@ -91,13 +84,7 @@ namespace MountClass.Mounts
 			var mcp = player.GetModPlayer<MountClassPlayer>();
 			mcp.mechWelcomeCooldown = MountClassConfigClient.Instance.mechWelcomeCooldown;
 			skipDust = true;
-			if (MountClassConfigClient.Instance.enableVanillaSounds)
-			{
-				SoundEngine.PlaySound(SoundID.Dig, player.position);
-			}
-			else
-			{
-			}
+			SoundEngine.PlaySound(SoundID.Dig, player.position);
 			if (mcp.mechDestroyed)
 			{
 				mcp.mechDestroyed = false;
@@ -136,14 +123,7 @@ namespace MountClass.Mounts
 							mcp.stepping = true;
 							PunchCameraModifier screenshake = new PunchCameraModifier(Main.LocalPlayer.Center, (Main.rand.NextFloat() * (MathHelper.TwoPi)).ToRotationVector2(), 1f, 6f, 20, 30f, FullName);
 							Main.instance.CameraModifiers.Add(screenshake);
-							if (MountClassConfigClient.Instance.enableVanillaSounds)
-							{
-								SoundEngine.PlaySound(SoundID.Item53, player.position);
-							}
-							else
-							{
-								SoundEngine.PlaySound(Sounds.Mech.MechStep, player.position);
-							}
+							SoundEngine.PlaySound(Sounds.Mech.MechStep, player.position);
 						}
 					}
 					else
@@ -158,13 +138,7 @@ namespace MountClass.Mounts
 				if (!mcp.jumping)
 				{
 					mcp.jumping = true;
-					if (MountClassConfigClient.Instance.enableVanillaSounds)
-					{
-					}
-					else
-					{
-						SoundEngine.PlaySound(Sounds.Mech.MechJump, player.position);
-					}
+					SoundEngine.PlaySound(Sounds.Mech.MechJump, player.position);
 				}
 			}
 			else
@@ -179,14 +153,8 @@ namespace MountClass.Mounts
 					mcp.landing = true;
 					PunchCameraModifier screenshake = new PunchCameraModifier(Main.LocalPlayer.Center, (Main.rand.NextFloat() * (MathHelper.TwoPi)).ToRotationVector2(), 1f, 6f, 20, 75f, FullName);
 					Main.instance.CameraModifiers.Add(screenshake);
-					if (MountClassConfigClient.Instance.enableVanillaSounds)
-					{
-					}
-					else
-					{
-						SoundEngine.PlaySound(Sounds.Mech.MechStep, player.position);
-						SoundEngine.PlaySound(Sounds.Mech.MechStep, player.position);
-					}
+					SoundEngine.PlaySound(Sounds.Mech.MechStep, player.position);
+					SoundEngine.PlaySound(Sounds.Mech.MechStep, player.position);
 				}
 			}
 			else
@@ -233,16 +201,9 @@ namespace MountClass.Mounts
 
 			if (mcp.rocketTimer == 180)
 			{
-				if (MountClassConfigClient.Instance.enableVanillaSounds)
-				{
-					SoundEngine.PlaySound(SoundID.Item108, player.position);
-				}
-				else
-				{
-					SoundEngine.PlaySound(Sounds.Mech.RocketReload1, player.position);
-					SoundEngine.PlaySound(Sounds.Mech.Overheat, player.position);
-					//SoundEngine.PlaySound(Sounds.Mech.ChainLoopHeavy, player.position);
-				}
+				SoundEngine.PlaySound(Sounds.Mech.RocketReload1, player.position);
+				SoundEngine.PlaySound(Sounds.Mech.Overheat, player.position);
+				//SoundEngine.PlaySound(Sounds.Mech.ChainLoopHeavy, player.position);
 			}
 			if (mcp.rocketTimer == 120)
 			{
@@ -254,14 +215,7 @@ namespace MountClass.Mounts
 			}
 			if (mcp.rocketTimer == 1)
 			{
-				if (MountClassConfigClient.Instance.enableVanillaSounds)
-				{
-					SoundEngine.PlaySound(SoundID.Item108, player.position);
-				}
-				else
-				{
-					SoundEngine.PlaySound(Sounds.Mech.RocketReload2, player.position);
-				}
+				SoundEngine.PlaySound(Sounds.Mech.RocketReload2, player.position);
 			}
 			if (mcp.grenadeTimer == 180)
 			{
@@ -277,51 +231,23 @@ namespace MountClass.Mounts
 			}
 			if (mcp.grenadeTimer == 1)
 			{
-				if (MountClassConfigClient.Instance.enableVanillaSounds)
-				{
-					SoundEngine.PlaySound(SoundID.Item108, player.position);
-				}
-				else
-				{
-					SoundEngine.PlaySound(Sounds.Mech.GrenadeReload1, player.position);
-				}
+				SoundEngine.PlaySound(Sounds.Mech.GrenadeReload1, player.position);
 			}
 			if (mcp.heavyCannonTimer == 80)
 			{
 				Vector2 direction = (target - player.Center).SafeNormalize(Vector2.UnitX);
 				int casing = Projectile.NewProjectile(Projectile.GetSource_None(), player.Center, direction * -6f, ModContent.ProjectileType<HeavyCannonCasing>(), 0, 0f, player.whoAmI);
-				if (MountClassConfigClient.Instance.enableVanillaSounds)
-				{
-					SoundEngine.PlaySound(SoundID.Item108, player.position);
-				}
-				else
-				{
-					SoundEngine.PlaySound(Sounds.Mech.HeavyCannonReload1, player.position);
-					SoundEngine.PlaySound(Sounds.Mech.EjectHeavyCannon, player.position);
-				}
+				SoundEngine.PlaySound(Sounds.Mech.HeavyCannonReload1, player.position);
+				SoundEngine.PlaySound(Sounds.Mech.EjectHeavyCannon, player.position);
 			}
 			if (mcp.heavyCannonTimer == 60)
 			{
-				if (MountClassConfigClient.Instance.enableVanillaSounds)
-				{
-					SoundEngine.PlaySound(SoundID.Item108, player.position);
-				}
-				else
-				{
-					SoundEngine.PlaySound(Sounds.Mech.ChainLoopHeavy, player.position);
-					SoundEngine.PlaySound(Sounds.Mech.ChainLoopLight, player.position);
-				}
+				SoundEngine.PlaySound(Sounds.Mech.ChainLoopHeavy, player.position);
+				SoundEngine.PlaySound(Sounds.Mech.ChainLoopLight, player.position);
 			}
 			if (mcp.heavyCannonTimer == 50)
 			{
-				if (MountClassConfigClient.Instance.enableVanillaSounds)
-				{
-					SoundEngine.PlaySound(SoundID.Item108, player.position);
-				}
-				else
-				{
-					SoundEngine.PlaySound(Sounds.Mech.HeavyCannonReload2, player.position);
-				}
+				SoundEngine.PlaySound(Sounds.Mech.HeavyCannonReload2, player.position);
 			}
 			if (!player.mouseInterface && mcp.mechUsageDelay <= 0)
 			{
@@ -342,14 +268,7 @@ namespace MountClass.Mounts
 						Main.projectile[proj].damage = MountClassConfig.Instance.mechRocketDamage;
 					}
 					mcp.rocketTimer = 241;
-					if (MountClassConfigClient.Instance.enableVanillaSounds)
-					{
-						SoundEngine.PlaySound(SoundID.Item11, player.position);
-					}
-					else
-					{
-						SoundEngine.PlaySound(Sounds.Mech.RocketFire, player.position);
-					}
+					SoundEngine.PlaySound(Sounds.Mech.RocketFire, player.position);
 					PunchCameraModifier screenshake = new PunchCameraModifier(Main.LocalPlayer.Center, (Main.rand.NextFloat() * (MathHelper.TwoPi)).ToRotationVector2(), 1f, 6f, 20, 150f, FullName);
 					Main.instance.CameraModifiers.Add(screenshake);
 				}
@@ -378,14 +297,7 @@ namespace MountClass.Mounts
 					{
 						mcp.grenadeTimer = 240;
 					}
-					if (MountClassConfigClient.Instance.enableVanillaSounds)
-					{
-						SoundEngine.PlaySound(SoundID.Item61, player.position);
-					}
-					else
-					{
-						SoundEngine.PlaySound(Sounds.Mech.GrenadeFire, player.position);
-					}
+					SoundEngine.PlaySound(Sounds.Mech.GrenadeFire, player.position);
 					PunchCameraModifier screenshake = new PunchCameraModifier(Main.LocalPlayer.Center, (Main.rand.NextFloat() * (MathHelper.TwoPi)).ToRotationVector2(), 1f, 6f, 20, 150f, FullName);
 					Main.instance.CameraModifiers.Add(screenshake);
 				}
@@ -402,14 +314,7 @@ namespace MountClass.Mounts
 						Main.projectile[proj].damage = MountClassConfig.Instance.mechHeavyCannonDamage;
 					}
 					mcp.heavyCannonTimer = 100;
-					if (MountClassConfigClient.Instance.enableVanillaSounds)
-					{
-						SoundEngine.PlaySound(SoundID.Item40, player.position);
-					}
-					else
-					{
-						SoundEngine.PlaySound(Sounds.Mech.HeavyCannonFire, player.position);
-					}
+					SoundEngine.PlaySound(Sounds.Mech.HeavyCannonFire, player.position);
 					PunchCameraModifier screenshake = new PunchCameraModifier(Main.LocalPlayer.Center, (Main.rand.NextFloat() * (MathHelper.TwoPi)).ToRotationVector2(), 1f, 6f, 20, 150f, FullName);
 					Main.instance.CameraModifiers.Add(screenshake);
 				}
@@ -427,14 +332,7 @@ namespace MountClass.Mounts
 							mcp.machineGunTimer = 5;
 							PunchCameraModifier screenshake = new PunchCameraModifier(Main.LocalPlayer.Center, (Main.rand.NextFloat() * (MathHelper.TwoPi)).ToRotationVector2(), 1f, 6f, 20, 150f, FullName);
 							Main.instance.CameraModifiers.Add(screenshake);
-							if (MountClassConfigClient.Instance.enableVanillaSounds)
-							{
-								SoundEngine.PlaySound(SoundID.Item40, player.position);
-							}
-							else
-							{
-								SoundEngine.PlaySound(Sounds.Mech.GunFire, player.position);
-							}
+							SoundEngine.PlaySound(Sounds.Mech.GunFire, player.position);
 						}
 						else
 						{
@@ -442,14 +340,7 @@ namespace MountClass.Mounts
 							mcp.machineGunTimer = 10;
 							PunchCameraModifier screenshake = new PunchCameraModifier(Main.LocalPlayer.Center, (Main.rand.NextFloat() * (MathHelper.TwoPi)).ToRotationVector2(), 1f, 6f, 20, 150f, FullName);
 							Main.instance.CameraModifiers.Add(screenshake);
-							if (MountClassConfigClient.Instance.enableVanillaSounds)
-							{
-								SoundEngine.PlaySound(SoundID.Item40, player.position);
-							}
-							else
-							{
-								SoundEngine.PlaySound(Sounds.Mech.GunUpgradedFire, player.position);
-							}
+							SoundEngine.PlaySound(Sounds.Mech.GunUpgradedFire, player.position);
 						}
 					}
 					else
@@ -458,14 +349,7 @@ namespace MountClass.Mounts
 						mcp.machineGunTimer = 10;
 						PunchCameraModifier screenshake = new PunchCameraModifier(Main.LocalPlayer.Center, (Main.rand.NextFloat() * (MathHelper.TwoPi)).ToRotationVector2(), 1f, 6f, 20, 150f, FullName);
 						Main.instance.CameraModifiers.Add(screenshake);
-						if (MountClassConfigClient.Instance.enableVanillaSounds)
-						{
-							SoundEngine.PlaySound(SoundID.Item40, player.position);
-						}
-						else
-						{
-							SoundEngine.PlaySound(Sounds.Mech.GunFire, player.position);
-						}
+						SoundEngine.PlaySound(Sounds.Mech.GunFire, player.position);
 					}
 				}
 				if (Main.mouseRight && mcp.mechUpgradeGun && mcp.selectTimer <= 0 && mcp.weaponSelect == 4)
@@ -480,14 +364,7 @@ namespace MountClass.Mounts
 						mcp.machineGunGatling = false;
 						mcp.selectTimer = 10;
 					}
-					if (MountClassConfigClient.Instance.enableVanillaSounds)
-					{
-						SoundEngine.PlaySound(SoundID.Item149, player.position);
-					}
-					else
-					{
-						SoundEngine.PlaySound(Sounds.Mech.SwitchGun, player.position);
-					}
+					SoundEngine.PlaySound(Sounds.Mech.SwitchGun, player.position);
 				}
 				
 				if (Main.netMode != NetmodeID.Server)
@@ -503,56 +380,28 @@ namespace MountClass.Mounts
 						mcp.weaponSelected = true;
 						mcp.weaponSelect = 4;
 						mcp.selectTimer = 60;
-						if (MountClassConfigClient.Instance.enableVanillaSounds)
-						{
-							SoundEngine.PlaySound(SoundID.Item149, player.position);
-						}
-						else
-						{
-							SoundEngine.PlaySound(Sounds.Mech.SwitchGun, player.position);
-						}
+						SoundEngine.PlaySound(Sounds.Mech.SwitchGun, player.position);
 					}
 					if (MountClass.SelectHeavyCannon.JustPressed && mcp.selectTimer <= 0)
 					{
 						mcp.weaponSelected = true;
 						mcp.weaponSelect = 3;
 						mcp.selectTimer = 60;
-						if (MountClassConfigClient.Instance.enableVanillaSounds)
-						{
-							SoundEngine.PlaySound(SoundID.Item13, player.position);
-						}
-						else
-						{
-							SoundEngine.PlaySound(Sounds.Mech.SwitchHeavyCannon, player.position);
-						}
+						SoundEngine.PlaySound(Sounds.Mech.SwitchHeavyCannon, player.position);
 					}
 					if (MountClass.SelectGrenade.JustPressed && mcp.selectTimer <= 0)
 					{
 						mcp.weaponSelected = true;
 						mcp.weaponSelect = 2;
 						mcp.selectTimer = 60;
-						if (MountClassConfigClient.Instance.enableVanillaSounds)
-						{
-							SoundEngine.PlaySound(SoundID.Item108, player.position);
-						}
-						else
-						{
-							SoundEngine.PlaySound(Sounds.Mech.SwitchGrenade, player.position);
-						}
+						SoundEngine.PlaySound(Sounds.Mech.SwitchGrenade, player.position);
 					}
 					if (MountClass.SelectRocket.JustPressed && mcp.selectTimer <= 0)
 					{
 						mcp.weaponSelected = true;
 						mcp.weaponSelect = 1;
 						mcp.selectTimer = 60;
-						if (MountClassConfigClient.Instance.enableVanillaSounds)
-						{
-							SoundEngine.PlaySound(SoundID.Item13, player.position);
-						}
-						else
-						{
-							SoundEngine.PlaySound(Sounds.Mech.SwitchRocket, player.position);
-						}
+						SoundEngine.PlaySound(Sounds.Mech.SwitchRocket, player.position);
 					}
 				}
 			}

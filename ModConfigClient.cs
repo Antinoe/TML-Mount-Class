@@ -14,11 +14,6 @@ namespace MountClass
 		
 	[Header("Audio")]
 		
-        [Label("[i:Megaphone] Vanilla Sounds")]
-        [Tooltip("If false, this mod's custom sounds will be played instead of Vanilla variations.\n[Default: Off]")]
-        [DefaultValue(false)]
-        public bool enableVanillaSounds {get; set;}
-		
         [Label("[i:FairyBell] Welcome Sound")]
         [Tooltip("If false, the Mech will not play a Welcome sound upon entering it after a while.\n[Default: On]")]
         [DefaultValue(true)]
