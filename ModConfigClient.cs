@@ -14,13 +14,13 @@ namespace MountClass
 		
 	[Header("Audio")]
 		
-        [Label("[i:FairyBell] Welcome Sound")]
-        [Tooltip("If false, the Mech will not play a Welcome sound upon entering it after a while.\n[Default: On]")]
+        /*[Label("[i:FairyBell] Welcome Sound")]
+        [Tooltip("If false, the Mech will not play a Welcome sound upon entering it after a while.\n[Default: On]")]*/
         [DefaultValue(true)]
         public bool enableMechWelcome {get; set;}
 		
-        [Label("[i:FairyBell] Welcome Cooldown")]
-        [Tooltip("[Default: 4000]")]
+        /*[Label("[i:FairyBell] Welcome Cooldown")]
+        [Tooltip("[Default: 4000]")]*/
         [Slider]
         [DefaultValue(4000)]
         [Range(200, 8000)]
